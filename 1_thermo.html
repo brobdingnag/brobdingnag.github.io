@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>多成分流体の熱力学第一法則</title>
+        <meta charset="utf-8">
+        <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
+        </script>
+        <script type="text/x-mathjax-config"> <!--Math Jaxの設定-->
+          MathJax.Hub.Config({
+            "HTML-CSS": {
+                availableFonts: [],
+                preferredFont: null,
+                webFont: "TeX",
+                mtextFontInherit: true}
+          });
+          MathJax.Hub.Config({
+            TeX: {
+                equationNumbers: { autoNumber: "AMS" },
+                Macros: {
+                    Vec: ['{\\boldsymbol{#1}}',1],
+                    diff: '{\\,\\mathrm d}',
+                    dif:    ['{\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}}',2],
+                    ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
+                    pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
+                    pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                }
+            },
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            },
+            "HTML-CSS": { matchFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+          });
+        </script>
+    </head>
+<body>
+<table>
+<tr>
+<td>$\Vec{v}$</td>
+<td>流体の中心速度</td>
+</tr>
+<tr>
+<td>$\Vec{v}_k$</td>
+<td>流体中の各成分の速度</td>
+</tr>
+</table>
+
+多成分流体の中心速度
+\begin{align}
+\boldsymbol{v}=\sum_k c_k
+\boldsymbol{v}_k \\
+\sum_k c_k =1
+\end{align}
+
+拡散速度
+\begin{align}
+\boldsymbol{w}_k&=
+\boldsymbol{v}_k-\boldsymbol{v} \\
+\sum_k c_k \boldsymbol{w}_k
+&=\sum_k c_k \boldsymbol{v}_k - \sum_k c_k \boldsymbol{v} = \boldsymbol{0}
+\end{align}
+
+熱力学第一法則
+
+\begin{align}
+du=Tds -pdv + \sum_k \mu_k dc_k \\
+ds=\frac{du}{T}+\frac{p}{T}dv-\sum_k\frac{\mu_k}{T}c_k
+\end{align}
+
+Eulerの方程式
+\begin{align}
+Ts& = u+pv-\sum_k \mu_k c_k \\
+T\rho s& =\rho u+p-\sum_k \mu_k \rho_k \\
+s &= \frac{u}{T}+\frac{pv}{T}-\sum_k \frac{\mu_k}{T} c_k \\
+\rho s &= \frac{\rho u}{T}+\frac{p}{T}-\sum_k \frac{\mu_k}{T}\rho_k
+\end{align}
+
+全エネルギーの内部エネルギーと拡散、重心運動への分離
+\begin{align}
+e &= u+ \sum_k \frac{1}{2}c_k \boldsymbol{w}_k \cdot \boldsymbol{w}_k
++\frac{1}{2}\boldsymbol{v}\cdot \boldsymbol{v} \\
+\rho u &= \rho e - \sum_k \frac{1}{2}\rho_k \boldsymbol{w}_k \cdot \boldsymbol{w}_k
+-\frac{1}{2}\rho\boldsymbol{v}\cdot \boldsymbol{v}
+\end{align}
+
+ベクトルの微分
+\begin{align}
+d\left(\frac{1}{2}\boldsymbol{v}\cdot \boldsymbol{v}\right)
+&= \boldsymbol{v} \cdot d\boldsymbol{v} \\
+\boldsymbol{v}\cdot d (\rho \boldsymbol{v})
+&=
+\boldsymbol{v}\cdot  \boldsymbol{v}d\rho
++
+\rho \boldsymbol{v}\cdot d \boldsymbol{v} \\
+\boldsymbol{w}_k\cdot d (\rho_k \boldsymbol{w}_k)
+&=
+d\rho_k \boldsymbol{w}_k\cdot  \boldsymbol{w}_k
++
+\rho_k \boldsymbol{w}_k\cdot d \boldsymbol{w}_k \\
+d\left(\frac{1}{2}\rho\boldsymbol{v}\cdot \boldsymbol{v}\right)
+&=\frac{1}{2}(\boldsymbol{v} \cdot d(\rho\boldsymbol{v}) + \rho\boldsymbol{v} \cdot d\boldsymbol{v})\\
+&=\boldsymbol{v} \cdot d(\rho\boldsymbol{v})-\frac{1}{2}\boldsymbol{v} \cdot \boldsymbol{v}d\rho
+\end{align}
+
+Gibbs-Duhemの式(示強変数拘束条件)
+\begin{align}
+sdT = vdp - \sum_k c_k d\mu_k \\
+\rho sdT = dp - \sum_k \rho_k d\mu_k
+\end{align}
+
+Gibbs-Duhemの式(変種)
+\begin{align}
+ud\left(\frac{1}{T} \right)
++vd\left(\frac{p}{T} \right)
+-\sum_k c_k d\left(\frac{\mu_k}{T} \right) \\
+\rho ud\left(\frac{1}{T} \right)
++d\left(\frac{p}{T} \right)
+-\sum_k \rho_k d\left(\frac{\mu_k}{T} \right) \\
+\end{align}
+
+拡散による質量流束
+\begin{align}
+\boldsymbol{J}_k = \rho_k\boldsymbol{w}_k \\
+\sum_{k} \boldsymbol{J}_k =\boldsymbol{0}
+\end{align}
+
+
+\begin{align}
+T\rho s& =\rho u+p-\sum_k \mu_k \rho_k \\
+\end{align}
+の両辺で全微分をとる。左辺は
+\begin{align}
+d(T\rho s) &= Td(\rho s) + \rho s dT \\
+&=Td(\rho s) +dp - \sum_k \rho_k d\mu_k
+\end{align}
+となり、右辺は
+\begin{align}
+d(\rho u+p-\sum_k \mu_k \rho_k)&=
+d(\rho u) + dp -\sum_k \rho_k d\mu_k  - \sum_k \mu_k d\rho_k 
+\end{align}
+ここで、
+\begin{align}
+d(\rho u) &=d\left( \rho e - \sum_k \frac{1}{2}\rho_k \boldsymbol{w}_k \cdot \boldsymbol{w}_k
+-\frac{1}{2}\rho\boldsymbol{v}\cdot \boldsymbol{v} \right) \\
+&= d(\rho e)
+-\sum_k \boldsymbol{w}_k\cdot d(\rho_k\boldsymbol{w}_k)
++\frac{1}{2}\boldsymbol{w}_k \cdot \boldsymbol{w}_k d\rho_k
+-\boldsymbol{v} \cdot d(\rho\boldsymbol{v})+\frac{1}{2}\boldsymbol{v} \cdot \boldsymbol{v}d\rho \\
+&=d(\rho e)
+-\sum_k \boldsymbol{w}_k \cdot d\boldsymbol{J}_k - \boldsymbol{v} \cdot d(\rho \boldsymbol{v})
++\sum_k \left(
+\frac{1}{2}\boldsymbol{w}_k \cdot \boldsymbol{w}_k +
+\frac{1}{2}\boldsymbol{v} \cdot \boldsymbol{v}
+\right)d\rho_k
+\end{align}
+に注意する。以上より、
+\begin{align}
+Td(\rho s) &= d(\rho u) - \sum_k \mu_k d\rho_k \\
+d(\rho s) &= \frac{1}{T}d(\rho u) - \frac{1}{T}\sum_k \mu_k d\rho_k \\
+&= \frac{1}{T}d(\rho e)
+-\sum_k \frac{\boldsymbol{w}_k}{T} \cdot d\boldsymbol{J}_k
+- \frac{\boldsymbol{v}}{T} \cdot d(\rho \boldsymbol{v})
+-\frac{1}{T}\sum_k \left(\mu_k
+-\frac{1}{2}\boldsymbol{w}_k \cdot \boldsymbol{w}_k
+-\frac{1}{2}\boldsymbol{v} \cdot \boldsymbol{v}
+\right)d\rho_k
+\end{align}
+ここで、
+\begin{align}
+\sum_k \boldsymbol{J}_k =\boldsymbol{0} \\
+\boldsymbol{J}_n = -\sum^{n-1}_{k=1}\boldsymbol{J}_k
+\end{align}
+から、
+\begin{align}
+\sum_k \frac{\boldsymbol{w}_k}{T}\cdot d\boldsymbol{J}_k
+&=\sum^{n-1}_{k=1} \frac{\boldsymbol{w}_k}{T}\cdot d\boldsymbol{J}_k
++ \frac{\boldsymbol{w}_n}{T}\cdot d\boldsymbol{J}_n \\
+&=\sum^{n-1}_{k=1} \frac{\boldsymbol{w}_k}{T}\cdot d\boldsymbol{J}_k
+- \frac{\boldsymbol{w}_n}{T}\cdot \sum^{n-1}_{k=1} d\boldsymbol{J}_k \\
+&=\sum^{n-1}_{k=1} \frac{\boldsymbol{w}_k-\boldsymbol{w}_n}{T}\cdot d\boldsymbol{J}_k
+\end{align}
+より、
+\begin{align}
+d(\rho s)
+&= \frac{1}{T}d(\rho e)
+-\sum^{n-1}_{k=1} \frac{\boldsymbol{w}_k-\boldsymbol{w}_n}{T}\cdot d\boldsymbol{J}_k
+- \frac{\boldsymbol{v}}{T} \cdot d(\rho \boldsymbol{v})
+-\frac{1}{T}\sum_k \left(\mu_k
+-\frac{1}{2}\boldsymbol{w}_k \cdot \boldsymbol{w}_k
+-\frac{1}{2}\boldsymbol{v} \cdot \boldsymbol{v}
+\right)d\rho_k
+\end{align}
+という熱力学的関係式が成り立つ。
+これはGibbs-Duhemの式とエネルギー分解の式から熱力学第一法則を書き直したことになる。ここで、
+\begin{align}
+\bar{\mu}_k = 
+\mu_k
+-\frac{1}{2}\boldsymbol{w}_k \cdot \boldsymbol{w}_k
+-\frac{1}{2}\boldsymbol{v} \cdot \boldsymbol{v}
+\end{align}
+とすると、
+\begin{align}
+d(\rho s)
+&= \frac{1}{T}d(\rho e)
+-\sum^{n-1}_{k=1} \frac{\boldsymbol{w}_k-\boldsymbol{w}_n}{T}\cdot d\boldsymbol{J}_k
+- \frac{\boldsymbol{v}}{T} \cdot d(\rho \boldsymbol{v})
+-\sum_k \frac{\bar{\mu}_k}{T}d\rho_k
+\end{align}
+とも書ける。これは、
+$\rho s = \rho s(\rho e,\boldsymbol{J}_k,\rho \boldsymbol{v},\rho_k)$
+が導かれたことを意味する。すなわち、エントロピー密度はエネルギー密度、
+拡散流、運動量密度、質量密度を決めれば決まると言える。
+
+
+<p>
+<a href="index.html">戻る</a>
+
+</body>
+</html>

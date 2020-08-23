@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>メモ帳</title>
+        <meta charset="utf-8">
+        <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
+        </script>
+        <script type="text/x-mathjax-config"> <!--Math Jaxの設定-->
+          MathJax.Hub.Config({
+            "HTML-CSS": {
+                availableFonts: [],
+                preferredFont: null,
+                webFont: "TeX",
+                mtextFontInherit: true}
+          });
+          MathJax.Hub.Config({
+            TeX: {
+                equationNumbers: { autoNumber: "AMS" },
+                Macros: {
+                    Vec: ['{\\boldsymbol{#1}}',1],
+                    diff: '{\\,\\mathrm d}',
+                    dif:    ['{\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}}',2],
+                    Dif:    ['{\\frac{\\mathrm{D} #1}{\\mathrm{D} #2}}',2],
+                    ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
+                    pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
+                    pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                }
+            },
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            },
+            "HTML-CSS": { matchFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+          });
+        </script>
+    </head>
+<body>
+
+Reynoldsの輸送定理(3パターン)を証明する。
+\begin{align}
+\Dif{}{t}\int_{B_t} \phi(\Vec{x},t) \diff V
+&=
+\int_{B_t}\left(\Dif{\phi(\Vec{x},t)}{t} + \phi(\Vec{x},t)\nabla \cdot \Vec{v}\right)\diff V \\
+&=
+\int_{B_t}\pdif{\phi(\Vec{x},t)}{t} \diff V
++ \int_{\partial B_t} \phi(\Vec{x},t) \Vec{v} \cdot \Vec{n}\diff S \\
+&=
+\int_{B_t}\left(\pdif{\phi(\Vec{x},t)}{t} 
++ \nabla \cdot ( \phi(\Vec{x},t) \Vec{v} ) \right)\diff V \\
+\end{align}
+
+一行目の証明は以下のようになる。
+\begin{align}
+\Dif{}{t}\int_{B_t} \phi(\Vec{x},t) \diff V
+&=\Dif{}{t}\int_{B_0} \hat{\phi}(\Vec{X},t) J\diff V_0 \\
+&=\int_{B_0}\Dif{}{t} (\hat{\phi}(\Vec{X},t) J)\diff V_0 \\
+&=\int_{B_0}\left( J\Dif{\hat{\phi}(\Vec{X},t)}{t} +
+\hat{\phi}(\Vec{X},t)\Dif{J}{t} \right)\diff V_0 \\
+&=\int_{B_0}\left( \Dif{\hat{\phi}(\Vec{X},t)}{t} +
+\hat{\phi}(\Vec{X},t)\nabla \cdot \Vec{v} \right)J\diff V_0 \\
+&=\int_{B_t}\left( \Dif{\phi(\Vec{x},t)}{t} +
+\phi(\Vec{x},t)\nabla \cdot \Vec{v} \right)\diff V \\
+\end{align}
+二行目の証明は以下のようになる。
+
+\begin{align}
+\int_{B_t}\left( \Dif{\phi(\Vec{x},t)}{t} +
+\phi(\Vec{x},t)\nabla \cdot \Vec{v} \right)\diff V
+&=
+\int_{B_t}\left( \pdif{\phi(\Vec{x},t)}{t} + \Vec{v} \cdot \nabla \phi(\Vec{x},t)
++\phi(\Vec{x},t)\nabla \cdot \Vec{v} \right)\diff V\\
+&=\int_{B_t}\left( \pdif{\phi(\Vec{x},t)}{t}+\nabla\cdot(\phi(\Vec{x},t) \Vec{v}) \right)\diff V\\
+&=\int_{B_t}\pdif{\phi(\Vec{x},t)}{t} \diff V
++ \int_{\partial B_t} \phi(\Vec{x},t) \Vec{v} \cdot \Vec{n}\diff S \\
+\end{align}
+
+三行目の証明は以下のようになる。
+\begin{align}
+\int_{B_t}\pdif{\phi(\Vec{x},t)}{t} \diff V
++ \int_{\partial B_t} \phi(\Vec{x},t) \Vec{v} \cdot \Vec{n}\diff S
+&= 
+\int_{B_t}\pdif{\phi(\Vec{x},t)}{t} \diff V
++\int_{\partial B_t} \phi(\Vec{x},t) v_i n_i\diff S \\
+&=
+\int_{B_t}\pdif{\phi(\Vec{x},t)}{t} \diff V
++\int_{B_t} \pdif{\phi(\Vec{x},t)v_i}{x_i}\diff V \\
+&=
+\int_{B_t}\left(\pdif{\phi(\Vec{x},t)}{t}
++ \nabla \cdot (\phi(\Vec{x},t)\Vec{v})\right)\diff V \\
+\end{align}
+
+ただし途中でヤコビアンの物質微分
+\begin{align}
+\Dif{J}{t} = J\nabla \cdot \Vec{v}
+\end{align}
+ベクトル解析の公式
+\begin{align}
+\nabla \cdot (\phi\Vec{v}) &= \pdif{}{x_i}(\phi v_i) \\
+&=v_i \pdif{\phi}{x_i}+\phi\pdif{v_i}{x_i} \\
+&=\Vec{v} \cdot \nabla \phi + \phi\nabla \cdot \Vec{v}
+\end{align}
+を用いた。
+
+<p>
+<a href="index.html">戻る</a>
+
+</body>
+</html>

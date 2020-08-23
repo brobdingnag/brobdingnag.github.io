@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>メモ帳</title>
+        <meta charset="utf-8">
+        <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
+        </script>
+        <script type="text/x-mathjax-config"> <!--Math Jaxの設定-->
+          MathJax.Hub.Config({
+            "HTML-CSS": {
+                availableFonts: [],
+                preferredFont: null,
+                webFont: "TeX",
+                mtextFontInherit: true}
+          });
+          MathJax.Hub.Config({
+            TeX: {
+                equationNumbers: { autoNumber: "AMS" },
+                Macros: {
+                    Vec: ['{\\boldsymbol{#1}}',1],
+                    diff: '{\\,\\mathrm d}',
+                    dif:    ['{\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}}',2],
+                    Dif:    ['{\\frac{\\mathrm{D} #1}{\\mathrm{D} #2}}',2],
+                    ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
+                    pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
+                    pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                }
+            },
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            },
+            "HTML-CSS": { matchFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+          });
+        </script>
+    </head>
+<body>
+・Greenの定理
+<p>
+3次元空間上の関数$F(\Vec{x})$とする。
+\begin{align}
+\int_V \pdif{F}{x_i} \diff V = \int_{S}F n_i \diff S
+\end{align}
+
+・Gaussの発散定理
+<p>
+Greenの定理をベクトル場$\Vec{F}(\Vec{x})=\{F_i(\Vec{x})\}$に適用すると、
+\begin{align}
+\int_V \pdif{F_{(i)}}{x_{(i)}} \diff V &= \int_{S}F_{(i)} n_{(i)} \diff S \\
+\int_V \pdif{F_i}{x_i} \diff V &= \int_{S}F_i n_i \diff S \\
+\int_V \nabla \cdot \Vec{F} \diff V &= \int_{S}\Vec{F} \cdot \Vec{n} \diff S
+\end{align}
+となる。一行目は各成分におけるGreenの定理、二行目はそれらの和をとっている。
+
+<p>
+<p>
+
+主に2階のテンソルについての重要事項のまとめ
+
+<p>
+・テンソル $A, B$ の内積
+\begin{align}
+A:B = \mathrm{tr}[AB] = A_{ij}B_{ji}
+\end{align}
+
+<p>
+・テンソルの発散
+\begin{align}
+\nabla \cdot A = \Vec{e}_i \pdif{A_{ji}}{x_j}
+\end{align}
+$A_{ij}$ではなく$A_{ji}$であることに注意！
+
+<p>
+・任意の2階の対称テンソルと反対称テンソルの内積は必ずゼロになる。
+
+<p>
+・2階の対称テンソルの二次形式には対称部分のみが寄与する。
+
+<p>
+・2階のテンソルが正定値であれば全ての固有値は必ず正になる (これは逆も成り立つ)。
+
+
+\begin{equation}
+\end{equation}
+
+\begin{align}
+\end{align}
+
+
+<p>
+<a href="index.html">戻る</a>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>メモ帳</title>
+        <meta charset="utf-8">
+        <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
+        </script>
+        <script type="text/x-mathjax-config"> <!--Math Jaxの設定-->
+          MathJax.Hub.Config({
+            "HTML-CSS": {
+                availableFonts: [],
+                preferredFont: null,
+                webFont: "TeX",
+                mtextFontInherit: true}
+          });
+          MathJax.Hub.Config({
+            TeX: {
+                equationNumbers: { autoNumber: "AMS" },
+                Macros: {
+                    Vec: ['{\\boldsymbol{#1}}',1],
+                    diff: '{\\,\\mathrm d}',
+                    dif:    ['{\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}}',2],
+                    Dif:    ['{\\frac{\\mathrm{D} #1}{\\mathrm{D} #2}}',2],
+                    ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
+                    pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
+                    pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                }
+            },
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            },
+            "HTML-CSS": { matchFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+          });
+        </script>
+    </head>
+<body>
+以下のような流体の運動方程式(運動量保存則)を導出する。
+\begin{align}
+\rho \Dif{\rho}{t} = \nabla \cdot \sigma + \rho \Vec{f}
+\end{align}
+まずはReynoldsの輸送定理
+\begin{align}
+\Dif{}{t}\int_{B_t} \phi(\Vec{x},t) \diff V
+&=
+\int_{B_t}\left(\Dif{\phi(\Vec{x},t)}{t} + \phi(\Vec{x},t)\nabla \cdot \Vec{v}\right)\diff V
+\end{align}
+を用いた証明を紹介する。
+ある検査領域中の流体の運動量の時間変化は、その流体に作用する面積力と体積力によるものとする。この時、運動方程式は、
+\begin{align}
+\Dif{}{t}\int_{B_t} \rho \Vec{v} \diff V
+=\int_{\partial B_t} \sigma (\diff \Vec{S}) + \int_{B_t}\rho \Vec{f}\diff V
+\end{align}
+となる。面積力たる右辺第一項は、
+\begin{align}
+\int_{\partial B_t}  \sigma (\diff \Vec{S})
+&=\int_{\partial B_t}  \sigma (\Vec{n}\diff S) \\ 
+&=\int_{\partial B_t}  \sigma \Vec{n}\diff S  \\ 
+&=\int_{\partial B_t}  \sigma_{ij} n_j\diff S \\ 
+&=\int_{B_t} \pdif{\sigma_{ij}}{x_j}\diff V \\ 
+&=\int_{B_t} \pdif{\sigma_{ji}}{x_j}\diff V \\ 
+&=\int_{B_t} \nabla \cdot \sigma \diff V \\ 
+\end{align}
+となる。途中で応力テンソル$\sigma$の線型性や対称性を利用していることに注意せよ。
+また、左辺は
+\begin{align}
+\Dif{}{t}\int_{B_t} \rho \Vec{v} \diff V
+&= \int_{B_t} \left( \Dif{(\rho \Vec{v})}{t} +
+\rho \Vec{v} (\nabla \cdot \Vec{v}) \right) \diff V \\
+&= \int_{B_t} \left(\rho\Dif{\Vec{v}}{t} +
+\Vec{v} \left(\Dif{\rho}{t}+\rho\nabla \cdot \Vec{v}\right)\right) \diff V \\
+&= \int_{B_t} \rho\Dif{\Vec{v}}{t} \diff V
+\end{align}
+となる。途中で連続の式
+\begin{align}
+\Dif{\rho}{t} + \rho \nabla\cdot \Vec{v}=0
+\end{align}
+を用いた。連続の式もまた輸送定理によって以下のように導かれる。
+\begin{align}
+\Dif{}{t}\int_{B_t} \rho \diff V = 
+\int_{B_t}\left(\Dif{\rho}{t} + \rho \nabla\cdot \Vec{v}\right) \diff V=0
+\end{align}
+
+<p>
+
+<a href="index.html">戻る</a>
+
+</body>
+</html>
