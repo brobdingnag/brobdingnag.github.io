@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>メモ帳</title>
+        <meta http-equiv="content-type" charset="utf-8"> <!--safariで表示-->
+        <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        <script type="text/x-mathjax-config"> <!--Math Jaxの設定-->
+          MathJax.Hub.Config({
+            TeX: { equationNumbers: { autoNumber: "AMS" }},
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            },
+            "HTML-CSS": { matchFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+          });
+        </script>
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+        <style>
+        li.L0, li.L1, li.L2, li.L3,
+        li.L5, li.L6, li.L7, li.L8 {
+          list-style-type: decimal !important;
+        }
+        </style>
+    </head>
+<body>
+f2py を使って Fortran プログラムを Python から利用する方法について
+
+<p>
+まずは簡単な関数の呼び出しから練習してみる。
+
+<p>
+<pre class="prettyprint linenums"><code class="language-fortran">
+module function_module
+    implicit none
+    private
+
+    interface gauss
+        module procedure :: gauss_sca, gauss_arr
+    end interface
+
+!    public :: gauss, gauss_ele
+    public :: gauss_sca, gauss_arr, gauss_ele
+
+contains
+</code></pre>
+
+<p>
+
+<p>
+\begin{equation}
+\end{equation}
+
+\begin{align}
+\end{align}
+
+
+<p>
+<a href="index.html">戻る</a>
+
+</body>
+</html>
