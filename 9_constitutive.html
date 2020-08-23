@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>メモ帳</title>
+        <title>Newton流体の構成方程式</title>
         <meta charset="utf-8">
         <script type="text/javascript"
             src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
@@ -52,6 +52,13 @@
 \lambda = \zeta- \frac{2}{3}\mu
 \end{align}
 を体積粘性率と呼んでいるケースもあるので注意した方がよい。
+このとき、$\tau$を静止流体中の応力テンソルからのずれ(偏差応力)とすると、$\tau$は以下のようになる。
+\begin{align}
+\tau &= \mu (\nabla \Vec{v} + {}^t(\nabla \Vec{v})) 
++\left(\zeta -\frac{2}{3}\mu\right) (\nabla \cdot \Vec{v})  I \\
+\end{align}
+せん断応力は$\sigma$の非対角成分のことであり、$\tau$はせん断応力とは呼ばず、粘性応力と言う。
+
 
 <p>
 <a href="index.html">戻る</a>

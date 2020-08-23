@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>メモ帳</title>
+        <title>流体の運動方程式</title>
         <meta charset="utf-8">
         <script type="text/javascript"
             src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
@@ -149,8 +149,69 @@
 \end{align}
 
 となる。
+<p>
+以上はLagrange的アプローチである。これをEuler的な観点で考える。
+すなわち、固定検査領域の運動量の蓄積速度は、境界を通じた運動量の流入量と検査体積に対する面積力・体積力によるもの(これはLagrange的アプローチの時と同じ)と考える。
 
+\begin{align}
+\dif{}{t}\int_{B_0} \rho \Vec{v} \diff V
+&=
+-\int_{\partial B_0} \rho \Vec{v} (\Vec{v}\cdot n)dS
++\int_{\partial B_0} \sigma (\diff \Vec{S}) + \int_{B_0}\rho \Vec{f}\diff V
+\end{align}
 
+右辺の第二、三項は先程と同様に処理できる。
+左辺第一項は以下のようになる。
+
+\begin{align}
+\dif{}{t}\int_{B_0} \rho \Vec{v} \diff V
+=
+\int_{B_0}\pdif{(\rho \Vec{v})}{t} \diff V
+\end{align}
+
+右辺第一項は以下のようになる。
+
+\begin{align}
+-\int_{\partial B_0} \rho \Vec{v} (\Vec{v}\cdot n)\diff S
+&=-\int_{\partial B_0} \rho v_i (v_j n_j)\diff S \\
+&=-\int_{ B_0} \pdif{\rho v_i v_j}{x_j}\diff V \\ 
+&=-\int_{ B_0} \nabla \cdot (\rho \Vec{v}\Vec{v})\diff V 
+\end{align}
+
+この項を左辺に移項すると、左辺は以下のように計算できる。
+
+\begin{align}
+\int_{B_0}\pdif{(\rho \Vec{v})}{t} \diff V
++\int_{ B_0} \nabla \cdot (\rho \Vec{v}\Vec{v}) \diff V 
+&=
+\int_{B_0}\left[
+\rho \pdif{ \Vec{v}}{t}+\Vec{v} \pdif{\rho}{t}
++\Vec{v}  (\nabla \cdot (\rho \Vec{v})) + \rho \Vec{v}\cdot \nabla \Vec{v} 
+\right]\diff V \\
+&=
+\int_{B_0}\left[
+\rho \left(\pdif{ \Vec{v}}{t}+  \Vec{v}\cdot \nabla \Vec{v} 
+\right)+
+\Vec{v}\left(
+ \pdif{\rho}{t}
++\nabla \cdot (\rho \Vec{v})\right)
+\right]\diff V \\
+&=
+\int_{B_0} \rho \Dif{\Vec{v}}{t}\diff V
+\end{align}
+
+ただしこの時、連続の式と以下の公式を用いた。
+おそらく成分だけで計算を進めた方が分かりやすい。
+
+\begin{align}
+\nabla \cdot (\rho \Vec{v}\Vec{v})
+&=\Vec{e}_i \pdif{(\rho \Vec{v}\Vec{v})_{ji}}{x_j} \\
+&=\Vec{e}_i \pdif{(\rho v_jv_i)}{x_j} \\
+&=v_i\Vec{e}_i \pdif{(\rho v_j)}{x_j} + \rho v_j\Vec{e}_i \pdif{v_i}{x_j} \\
+&=\Vec{v}  (\nabla \cdot (\rho \Vec{v})) + \rho \Vec{v}\cdot \nabla \Vec{v} 
+\end{align}
+
+以上より、最初の運動方程式が導ける。
 
 <p>
 
