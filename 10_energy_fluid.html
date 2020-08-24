@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>流体のエネルギー保存について</title>
+        <meta charset="utf-8">
+        <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
+        </script>
+        <script type="text/x-mathjax-config"> <!--Math Jaxの設定-->
+          MathJax.Hub.Config({
+            "HTML-CSS": {
+                availableFonts: [],
+                preferredFont: null,
+                webFont: "TeX",
+                mtextFontInherit: true}
+          });
+          MathJax.Hub.Config({
+            TeX: {
+                equationNumbers: { autoNumber: "AMS" },
+                Macros: {
+                    Vec: ['{\\boldsymbol{#1}}',1],
+                    diff: '{\\,\\mathrm d}',
+                    dif:    ['{\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}}',2],
+                    Dif:    ['{\\frac{\\mathrm{D} #1}{\\mathrm{D} #2}}',2],
+                    ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
+                    pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
+                    pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                }
+            },
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            },
+            "HTML-CSS": { matchFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+          });
+        </script>
+    </head>
+<body>
+エネルギーは全て単位体積あたりで考える。運動方程式の両辺と$\Vec{v}$の内積を考える。
+<p>
+\begin{align}
+\Vec{v} \cdot \rho \Dif{\Vec{v}}{t} = \Vec{v} \cdot (\nabla \cdot \sigma) + \rho \Vec{v}\cdot \Vec{f}
+\end{align}
+
+この時、上式の左辺は
+
+\begin{align}
+\rho\Dif{}{t}\left(\frac{\Vec{v} \cdot \Vec{v}}{2} \right)
+&=\rho \Vec{v} \cdot \Dif{\Vec{v}}{t}
+\end{align}
+
+であるから
+
+\begin{align}
+\rho\Dif{}{t}\left(\frac{\Vec{v} \cdot \Vec{v}}{2} \right)
+= \Vec{v} \cdot (\nabla \cdot \sigma) + \rho \Vec{v}\cdot \Vec{f} \label{101}
+\end{align}
+
+が成り立ち、これは単位質量あたりの運動エネルギーの変化率を表す式であることがわかる。
+一方、空間上に固定した領域$B_0$での全エネルギー(正確には重心運動エネルギーと内部運動エネルギー、内部エネルギーの和)の収支は以下のようになる。
+
+\begin{align}
+\int_{B_0} \pdif{(\rho e)}{t} \diff V
+&=
+-\int_{\partial B_0} \rho e \Vec{v} \cdot \Vec{n} \diff S
++ \int_{\partial B_0} \Vec{v}\cdot (\sigma \Vec{n}) \diff S
++ \int_{B_0} \rho \Vec{v} \cdot \Vec{f}\diff V
+- \int_{\partial B_0} \Vec{q} \cdot \Vec{n}\diff S
++ \int_{B_0} S_H\diff V \label{102}
+\end{align}
+
+右辺第一項を左辺に移項して計算すると以下のようになる。
+
+\begin{align}
+\int_{B_0} \pdif{(\rho e)}{t} \diff V
++\int_{\partial B_0} \rho e \Vec{v} \cdot \Vec{n} \diff S
+&= 
+\int_{B_0}\left( \rho \pdif{e}{t} +e \pdif{\rho}{t}\right) \diff V
++\int_{B_0} \nabla \cdot (\rho e \Vec{v}) \diff V \\
+&= 
+\int_{B_0}\left( \rho \pdif{e}{t} +e \pdif{\rho}{t}\right) \diff V
++\int_{B_0} \left(e \nabla \cdot (\rho \Vec{v}) + \rho \Vec{v} \cdot \nabla e \right) \diff V \\
+&=
+\int_{B_0}\left[
+\rho \left( \pdif{e}{t} + \Vec{v} \cdot \nabla e \right)
++e\left(\pdif{\rho}{t} + \nabla \cdot (\rho \Vec{v})\right)
+\right] \diff V \\
+&=
+\int_{B_0}
+\rho \Dif{e}{t}
+\diff V
+\end{align}
+途中で連続の式を使ったことに注意。
+右辺第二項は以下のようになる。
+
+\begin{align}
+\int_{\partial B_0} \Vec{v}\cdot (\sigma \Vec{n}) \diff S
+&=\int_{\partial B_0} v_i \sigma_{ij} n_j  \diff S \\
+&=\int_{B_0} \pdif{(\sigma_{ji}v_j)}{x_i}  \diff V \\
+&=\int_{B_0} \pdif{(\sigma_{ij}v_j)}{x_i}  \diff V \\
+&=\int_{B_0} \nabla \cdot (\sigma \Vec{v})  \diff V \\
+\end{align}
+
+一行目から二行目はスカラーなので発散定理の適用後に$i,j$を入れ替えることが正当化できる。
+三行目では応力テンソルの対称性を利用している。
+\eqref{102}の第四項にも発散定理を適用することにより、\eqref{102}の微分形は以下のようになる。
+
+\begin{align}
+\rho \Dif{e}{t} = \nabla \cdot (\sigma \Vec{v}) + \rho \Vec{v} \cdot \Vec{f}
+-\nabla \cdot \Vec{q} + S_H
+\end{align}
+
+これと\eqref{101}の差をとると、次の内部エネルギーの保存則が得られる。
+
+\begin{align}
+\rho \Dif{u}{t} = \nabla \cdot (\sigma \Vec{v})  -\Vec{v} \cdot (\nabla \cdot \sigma)
+-\nabla \cdot \Vec{q} + S_H \label{103}
+\end{align}
+
+ただし、
+\begin{align}
+u = e - \frac{\Vec{v}\cdot \Vec{v}}{2}
+\end{align}
+
+であることに注意。
+\eqref{103}の第一項をさらに変形すると、
+
+\begin{align}
+\nabla \cdot (\sigma \Vec{v})
+&=\pdif{(\sigma_{ij}v_j)}{x_i} \\
+&=v_j \pdif{\sigma_{ji}}{x_i} + \sigma_{ij} \pdif{v_j}{x_i} \\
+&=\Vec{v} \cdot (\nabla \cdot  \sigma) + \sigma : \nabla \Vec{v} \label{105}
+\end{align}
+
+となる。途中で応力テンソルの対称性を利用している。よって、\eqref{103}はさらに以下のようになる。
+
+\begin{align}
+\rho \Dif{u}{t} = \sigma : \nabla \Vec{v}
+-\nabla \cdot \Vec{q} + S_H 
+\end{align}
+
+次に、上式の右辺第一項に構成方程式を代入して次のように変形していく。
+
+\begin{align}
+\sigma : \nabla \Vec{v}
+&=
+\left[ -p\delta_{ij} - \frac{2}{3}\mu\pdif{v_k}{x_k}\delta_{ij} +
+\mu \left(\pdif{v_j}{x_i} + \pdif{v_i}{x_j} \right)\right]\pdif{v_j}{x_i} \\
+&= \left( -p - \frac{2}{3}\mu \Theta \right) \delta_{ij} \pdif{v_j}{v_i}
++\mu \left(\pdif{v_j}{x_i} + \pdif{v_i}{x_j} \right)\pdif{v_j}{x_i} \\
+&= -p\Theta - \frac{2}{3}\mu \Theta^2 +2\mu S_{ij} \pdif{v_j}{x_i} \label{104} \\
+\end{align}
+
+ただし、体積粘性率$\zeta=0$かつ
+
+\begin{align}
+\Theta &= \pdif{v_k}{x_k} \\
+S_{ij} &= \frac{1}{2}\left( \pdif{v_j}{x_i} + \pdif{v_i}{x_j} \right)
+\end{align}
+
+とおいたことに注意。この時、$S_{ij}$が対称テンソルであることを利用すると、\eqref{104}の第三項は以下のように変形できる。
+
+\begin{align}
+2\mu S_{ij} \pdif{v_j}{x_i}
+&=\mu S_{ij} \left(\pdif{v_j}{x_i} + \pdif{v_j}{x_i} \right) \\
+&=\mu\left(S_{ij}\pdif{v_j}{x_i} +S_{ij} \pdif{v_j}{x_i} \right) \\
+&=\mu\left(S_{ij}\pdif{v_j}{x_i} +S_{ji} \pdif{v_i}{x_j} \right) \\
+&=\mu S_{ij} \left(\pdif{v_j}{x_i} + \pdif{v_i}{x_j} \right) \\
+&=2\mu S_{ij} S_{ij}
+\end{align}
+
+二行目から三行目では第二項はスカラーなので$i,j$をひっくり返し、その後に四行目で$S_{ij}$の対称性を用いている。
+以上より、\eqref{104}は以下のようになる。
+
+\begin{align}
+\sigma : \nabla \Vec{v}
+&= -p\Theta - \frac{2}{3}\mu \Theta^2 +2\mu S_{ij}S_{ij} \\
+&= -p\Theta + \mu \Phi
+\end{align}
+
+ただし$\Phi$の定義と正負は以下のようになることに注意。
+
+\begin{align}
+\Phi &= 2S_{ij} S_{ij} - \frac{2}{3} \Theta^2 \\
+&=2\sum_{i,j,i\ne j} S_{ij} S_{ij}+ 2\sum_{i,j,i=j} S_{ij} S_{ij}
+- \frac{2}{3} \sum_{i,j,i=j}S_{ij} S_{ij} \\
+&=2\sum_{i,j,i\ne j} S_{ij} S_{ij}+ \frac{4}{3}\sum_{i,j,i=j} S_{ij} S_{ij} >0
+\end{align}
+
+以上で得られた結果と\eqref{105}を合わせると、運動エネルギーと内部エネルギーはそれぞれ以下のようになる。
+
+\begin{align}
+\rho \Dif{}{t} \left(\frac{\Vec{v}\cdot\Vec{v}}{2}\right)
+&= \nabla \cdot (\sigma \Vec{v}) + p\Theta -\mu \Phi + \rho \Vec{v}\cdot \Vec{f} \\
+\rho \Dif{u}{t} &= -p \Theta + \mu \Phi -\nabla \cdot \Vec{q} + S_H
+\end{align}
+
+<p>
+<a href="index.html">戻る</a>
+
+</body>
+</html>
