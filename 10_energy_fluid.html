@@ -180,7 +180,8 @@ S_{ij} &= \frac{1}{2}\left( \pdif{v_j}{x_i} + \pdif{v_i}{x_j} \right)
 &= -p\Theta + \mu \Phi
 \end{align}
 
-ただし$\Phi$の定義と正負は以下のようになることに注意。
+ただし散逸関数$\Phi$の定義と正負は以下のようになることに注意。
+$\Phi$は流体摩擦による運動エネルギーの不可逆的な損失を意味する。
 
 \begin{align}
 \Phi &= 2S_{ij} S_{ij} - \frac{2}{3} \Theta^2 \\
@@ -194,8 +195,31 @@ S_{ij} &= \frac{1}{2}\left( \pdif{v_j}{x_i} + \pdif{v_i}{x_j} \right)
 \begin{align}
 \rho \Dif{}{t} \left(\frac{\Vec{v}\cdot\Vec{v}}{2}\right)
 &= \nabla \cdot (\sigma \Vec{v}) + p\Theta -\mu \Phi + \rho \Vec{v}\cdot \Vec{f} \\
-\rho \Dif{u}{t} &= -p \Theta + \mu \Phi -\nabla \cdot \Vec{q} + S_H
+\rho \Dif{u}{t} &= -p \Theta + \mu \Phi -\nabla \cdot \Vec{q} + S_H \label{106}
 \end{align}
+
+項$p\Theta$についても考察しておく。以下のように連続の式を変形する。
+ただし、$v$は単位質量あたりの体積で、$v=1/\rho$となっている。
+
+\begin{align}
+\Dif{\rho}{t} + \rho \nabla \cdot \Vec{v}&=0 \\
+\Dif{\rho}{t} + \rho \Theta&=0 \quad  \left(\Theta = \pdif{v_k}{x_k} = \nabla \cdot \Vec{v}\right)\\
+\therefore \quad \Theta &= -\frac{1}{\rho} \Dif{\rho}{t} \\
+&= -v \Dif{}{t}\left(\frac{1}{v}\right) \\
+&= \frac{1}{v}\Dif{v}{t} \\
+&= \rho\Dif{v}{t} \\
+\end{align}
+
+よって、$p\Theta$は以下のようになる。
+
+\begin{align}
+p\Theta = p\rho \Dif{v}{t}
+\end{align}
+
+この式と\eqref{106}より、体積が膨張する$p\Theta\gt0$の時に内部エネルギーが減少し、
+体積が減少する$p\Theta\lt0$の時に内部エネルギーが増加することが分かる。
+つまり、$p\Theta$は運動エネルギーと内部エネルギーのエネルギーのやり取りに相当する可逆仕事であることが分かる。
+
 
 <p>
 <a href="index.html">戻る</a>
