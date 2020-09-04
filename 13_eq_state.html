@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>熱力学的状態方程式</title>
+        <meta charset="utf-8">
+        <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
+        </script>
+        <script type="text/x-mathjax-config"> <!--Math Jaxの設定-->
+          MathJax.Hub.Config({
+            "HTML-CSS": {
+                availableFonts: [],
+                preferredFont: null,
+                webFont: "TeX",
+                mtextFontInherit: true}
+          });
+          MathJax.Hub.Config({
+            TeX: {
+                equationNumbers: { autoNumber: "AMS" },
+                Macros: {
+                    ve: ['{\\boldsymbol{#1}}',1],
+                    rmd: '{\\,\\mathrm d}',
+                    dif:    ['{\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}}',2],
+                    Dif:    ['{\\frac{\\mathrm{D} #1}{\\mathrm{D} #2}}',2],
+                    ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
+                    pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
+                    pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                    mbra: ['{\\left( #1 \\right)}',1],
+                }
+            },
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            },
+            "HTML-CSS": { matchFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+          });
+        </script>
+    </head>
+<body>
+以下の熱力学的状態方程式を導出する。
+
+\begin{align}
+\left(\pdif{U}{V}
+\right)_T = -p + T\left(\pdif{p}{T}\right)_V
+\end{align}
+
+そのためにまず、熱力学第一法則とHelmholtz自由エネルギーの定義から出発する。
+
+\begin{align}
+\rmd U &= T \rmd S - p \rmd V  \label{131} \\
+A &= U-TS \label{134}
+\end{align}
+
+この時、$A$の全微分の式\eqref{131}を代入すると、
+
+\begin{align}
+\rmd A %= \rmd U - T\rmd S - S\rmd T \\
+&=-S \rmd T - p\rmd V
+\end{align}
+
+となる。したがって、
+
+\begin{align}
+\left(\pdif{A}{T}\right)_V &= -S  \label{132} \\ 
+\left(\pdif{A}{V}\right)_T &= -p  \label{133}
+\end{align}
+
+となる。
+\eqref{132}、\eqref{133}をそれぞれ$V$、$T$で偏微分すると、$A$の交差微分が等しいことを利用して以下の式(Maxwellの関係式)が導かれる。
+
+\begin{align}
+\left(\pdif{S}{V}\right)_T=
+\left(\pdif{p}{T}\right)_V
+\end{align}
+
+ここで、\eqref{134}を$T$一定のもと$V$で偏微分すると、以下のようにして熱力学的関数$U$を$p,V,T$に結びつける熱力学的状態方程式が導かれる。
+
+\begin{align}
+\mbra{\pdif{A}{V}}_T &= \mbra{\pdif{U}{V}}_T - T \mbra{\pdif{S}{V}}_T \\
+\therefore \quad
+\mbra{\pdif{U}{V}}_T &= -p + T\mbra{\pdif{p}{T}}_V
+\end{align}
+
+
+
+<p>
+<a href="index.html">戻る</a>
+
+</body>
+</html>

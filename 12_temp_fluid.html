@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>流体の温度場の式</title>
+        <meta charset="utf-8">
+        <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
+        </script>
+        <script type="text/x-mathjax-config"> <!--Math Jaxの設定-->
+          MathJax.Hub.Config({
+            "HTML-CSS": {
+                availableFonts: [],
+                preferredFont: null,
+                webFont: "TeX",
+                mtextFontInherit: true}
+          });
+          MathJax.Hub.Config({
+            TeX: {
+                equationNumbers: { autoNumber: "AMS" },
+                Macros: {
+                    ve: ['{\\boldsymbol{#1}}',1],
+                    rmd: '{\\,\\mathrm d}',
+                    dif:    ['{\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}}',2],
+                    Dif:    ['{\\frac{\\mathrm{D} #1}{\\mathrm{D} #2}}',2],
+                    ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
+                    pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
+                    pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                }
+            },
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            },
+            "HTML-CSS": { matchFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+          });
+        </script>
+    </head>
+<body>
+<p>
+内部エネルギーは以下のようになる。
+
+\begin{align}
+\rho \Dif{u}{t} &= -p \Theta + \mu \Phi -\nabla \cdot \ve{q} + S_H \label{106}
+\end{align}
+
+また、状態方程式は以下のようになる。
+
+\begin{align}
+\left(\pdif{U}{V}\right)_T =
+T\left(\pdif{p}{T}\right)_V -p
+\end{align}
+
+よって、内部エネルギー変化の主要部は次のように書ける。
+
+\begin{align}
+\rmd U &=
+\left(\pdif{U}{T}\right)_V \rmd T +
+\left(\pdif{U}{V}\right)_T \rmd V \\
+&=C_V \rmd T
++\left(-p + T\left(\pdif{p}{T}\right)_V \right) \rmd V
+\end{align}
+
+これを単位質量あたりにすると以下のようになる。
+
+\begin{align}
+\rmd u
+&=c_V \rmd T
++\left(-p + T\left(\pdif{p}{T}\right)_V \right) \rmd v
+\end{align}
+
+
+
+<p>
+<a href="index.html">戻る</a>
+
+</body>
+</html>
