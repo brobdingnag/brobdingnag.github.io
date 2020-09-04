@@ -25,6 +25,8 @@
                     ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
                     pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
                     pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                    mbra: ['{\\left( #1 \\right)}',1],
+                   sbra: ['{\\left[ #1 \\right]}',1],
                 }
             },
             tex2jax: {
@@ -67,8 +69,58 @@ T\left(\pdif{p}{T}\right)_V -p
 \begin{align}
 \rmd u
 &=c_V \rmd T
-+\left(-p + T\left(\pdif{p}{T}\right)_V \right) \rmd v
++\left(-p + T\left(\pdif{p}{T}\right)_v \right) \rmd v
 \end{align}
+
+この式から、$u$の変化の主要部が$\rmd T,\rmd v$であることが分かったので、さらに以下のように書き直せる。
+ただし、両辺に$\rho$をかけた。
+
+\begin{align}
+\rho\Dif{u}{t}
+&=\rho c_V \Dif{T}{t}
++\left(-p + T\left(\pdif{p}{T}\right)_v \right) \rho \Dif{v}{t} \label{121}
+\end{align}
+
+ここで、<a href="10_energy_fluid.html">流体のエネルギー保存</a>で以下の式を証明したこと確認しておく。
+
+\begin{align}
+\Theta = \nabla \cdot \ve{v} = \rho \Dif{v}{t}
+\end{align}
+
+したがって、\eqref{121}は以下のようになる。
+
+\begin{align}
+\rho\Dif{u}{t}
+&=\rho c_V \Dif{T}{t}
++\left(-p + T\left(\pdif{p}{T}\right)_v \right) \nabla \cdot \ve{v}
+\end{align}
+
+ここに内部エネルギーの保存則
+
+\begin{align}
+\rho \Dif{u}{t} = -p \Theta + \mu \Phi -\nabla \cdot \ve{q} + S_H
+\end{align}
+
+を代入すると、以下のように温度場の式が導かれる。
+
+\begin{align}
+\rho c_V \Dif{T}{t}=
+- \nabla \cdot \ve{q} +\mu \Phi
+- T\left(\pdif{p}{T}\right)_v  \nabla \cdot \ve{v} + S_H
+\end{align}
+
+この方程式で流体の非圧縮性を仮定し、散逸が無視でき、内部に熱源が無いとすると
+
+\begin{align}
+\rho c_V \Dif{T}{t}=
+- \nabla \cdot \ve{q}
+\end{align}
+
+となって、熱伝導方程式が導かれる(さらに移流項を無視してフーリエの法則が成り立つと仮定)。
+
+<p>
+以上を総合すると、流体の6個の未知数$\rho ,\ve{v},p,T$を求めるためには連続の式、Navier-Stokes方程式、温度場の式、状態方程式の6本を連立すればよいことが分かる。
+系の粒子数が変化する時は$U=U(T,V,N)$になる。それは保留。
 
 
 
