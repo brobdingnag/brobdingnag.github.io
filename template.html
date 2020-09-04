@@ -18,13 +18,14 @@
             TeX: {
                 equationNumbers: { autoNumber: "AMS" },
                 Macros: {
-                    Vec: ['{\\boldsymbol{#1}}',1],
-                    diff: '{\\,\\mathrm d}',
+                    ve: ['{\\boldsymbol{#1}}',1],
+                    rmd: '{\\,\\mathrm d}',
                     dif:    ['{\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}}',2],
                     Dif:    ['{\\frac{\\mathrm{D} #1}{\\mathrm{D} #2}}',2],
                     ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
                     pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
                     pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                    mbra: ['{\\left( #1 \\right)}',1],
                 }
             },
             tex2jax: {
@@ -48,8 +49,6 @@
 
 <p>
 \begin{align}
-\Vec{F} = m\dif{\Vec{v}}{t} \\
-\Vec{F} = - \pdif{U}{\Vec{r}}
 \end{align}
 
 <p>
