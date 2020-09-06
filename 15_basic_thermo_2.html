@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>熱力学第二法則について</title>
+        <meta charset="utf-8">
+        <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
+        </script>
+        <script type="text/x-mathjax-config"> <!--Math Jaxの設定-->
+          MathJax.Hub.Config({
+            "HTML-CSS": {
+                availableFonts: [],
+                preferredFont: null,
+                webFont: "TeX",
+                mtextFontInherit: true}
+          });
+          MathJax.Hub.Config({
+            TeX: {
+                equationNumbers: { autoNumber: "AMS" },
+                Macros: {
+                    ve: ['{\\boldsymbol{#1}}',1],
+                    rmd: '{\\,\\mathrm d}',
+                    dif:    ['{\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}}',2],
+                    Dif:    ['{\\frac{\\mathrm{D} #1}{\\mathrm{D} #2}}',2],
+                    ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
+                    pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
+                    pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                    mbra: ['{\\left( #1 \\right)}',1],
+                    sbra: ['{\\left[ #1 \\right]}',1],
+                }
+            },
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            },
+            "HTML-CSS": { matchFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+          });
+        </script>
+    </head>
+<body>
+
+Clausiusの原理→Carnotの定理→Clausiusの式→エントロピーの導入という順序で見ていく。
+
+<p>
+・Clausiusの原理
+
+<p>
+・Carnotの定理
+
+<p>
+2つの熱源の間にはたらく可逆熱機関の熱効率は2つの熱源の温度のみで決まる。
+また、不可逆機関の効率は可逆機関の効率よりも小さくなる。
+この結論を敷に表すと、以下のようになる。ただし、$T_1$はCarnotサイクルの高温熱源の温度、$T_2$はCarnotサイクルの低温熱源の温度とする。また、$q_1$を任意の熱機関の吸収熱量、$q_2$を任意の熱機関の放出熱量とする。
+
+\begin{align}
+\frac{q_1-q_2}{q_1} &\ge \frac{T_1-T_2}{T_1} \\ 
+\therefore \quad \frac{q_2}{q_1} &\ge \frac{T_2}{T_1} 
+\end{align}
+
+
+<p>
+・Clausiuの式
+
+<p>
+Carnotの定理の結論の式
+
+\begin{align}
+\frac{q_2}{q_1} &\ge \frac{T_2}{T_1}
+\end{align}
+
+において、$q_2 \rightarrow -q_2$($q_2$は吸熱に再定義)とすると、上式は以下のように変形できる。
+
+\begin{align}
+\frac{q_1}{T_1} + \frac{q_2}{T_2} \leq 0
+\end{align}
+
+これは熱源が$n$個あっても成り立つので、その時に以下のように書ける。
+
+\begin{align}
+\sum^{n}_{i=1} \frac{q_i}{T_i} \leq 0
+\end{align}
+
+熱源の温度が$T_e$で、これが連続的に変化すると考えると、上式は以下のように積分で表すことができる。
+
+\begin{align}
+\oint \frac{\rmd'q}{T_e} \leq 0
+\end{align}
+
+
+<p>
+・エントロピーの導入
+
+<p>
+系が可逆サイクルであると仮定し、その時吸収する熱量を$\rmd 'q_{\rm rev}$とする。
+このとき、以下のようにエントロピー$S$の微小変化を定義する。
+
+\begin{align}
+\rmd S = \frac{\rmd' q_{\rm rev}}{T_e}
+\end{align}
+
+この時、Clausiusの式から以下の式が成り立ち、エントロピー$S$が状態量であると分かる。
+
+\begin{align}
+\oint \rmd S =0
+\end{align}
+
+次に、系が$\rmd 'q$の熱を吸収しながら$A$から$B$に変化する際に
+
+\begin{align}
+\Delta S =S_B- S_A \geq \int^{B}_{A} \frac{\rmd'q}{T_e} \label{151}
+\end{align}
+
+が成り立つことを示す。Clausiusの式の左辺において、$A\rightarrow B$(可逆or不可逆の任意の経路)と$B\rightarrow A$(可逆)とし、$\rmd'q'$をサイクル全体で吸収する熱として強調しておくと以下のように式変形できる。
+
+\begin{align}
+\oint \frac{\rmd 'q'}{T_e}
+&=\int^{B}_{A}\frac{\rmd'q}{T_e}+\int^{A}_{B}\frac{\rmd'q_{\rm rev}}{T_e} \\
+&=\int^{B}_{A}\frac{\rmd'q}{T_e} + S_A - S_B \leq 0
+\end{align}
+
+したがって、\eqref{151}が成り立つ。
+ただし、エントロピーの状態量としての性質を用いたことに注意する。
+
+
+<p>
+<a href="index.html">戻る</a>
+
+</body>
+</html>
