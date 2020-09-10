@@ -18,13 +18,15 @@
             TeX: {
                 equationNumbers: { autoNumber: "AMS" },
                 Macros: {
-                    Vec: ['{\\boldsymbol{#1}}',1],
-                    diff: '{\\,\\mathrm d}',
+                    ve: ['{\\boldsymbol{#1}}',1],
+                    rmd: '{\\,\\mathrm d}',
                     dif:    ['{\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}}',2],
                     Dif:    ['{\\frac{\\mathrm{D} #1}{\\mathrm{D} #2}}',2],
                     ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
                     pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
                     pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                    mbra: ['{\\left( #1 \\right)}',1],
+                    sbra: ['{\\left[ #1 \\right]}',1],
                 }
             },
             tex2jax: {
@@ -42,23 +44,35 @@
 ニュートン流体の構成方程式の様々な表現を整理する。まず基本形は以下とする。
 <p>
 \begin{align}
-\sigma &= -pI + \mu (\nabla \Vec{v} + {}^t(\nabla \Vec{v})) 
-+\left(\zeta -\frac{2}{3}\mu\right) (\nabla \cdot \Vec{v})  I \\
+\sigma &= -pI + \mu (\nabla \ve{v} + {}^t(\nabla \ve{v})) 
++\left(\zeta -\frac{2}{3}\mu\right) (\nabla \cdot \ve{v})  I \\
 \sigma_{ij} &= -p\delta_{ij} + \mu \left(\pdif{v_j}{x_i} + \pdif{v_i}{x_j} \right)
 +\left(\zeta -\frac{2}{3}\mu\right) \pdif{v_k}{x_k} \delta_{ij} \\
 \end{align}
+
 上が行列表現で下がその成分表示である。教科書によっては
+
 \begin{align}
 \lambda = \zeta- \frac{2}{3}\mu
 \end{align}
+
 を体積粘性率と呼んでいるケースもあるので注意した方がよい。
 このとき、$\tau$を静止流体中の応力テンソルからのずれ(偏差応力)とすると、$\tau$は以下のようになる。
-\begin{align}
-\tau &= \mu (\nabla \Vec{v} + {}^t(\nabla \Vec{v})) 
-+\left(\zeta -\frac{2}{3}\mu\right) (\nabla \cdot \Vec{v})  I \\
-\end{align}
-せん断応力は$\sigma$の非対角成分のことであり、$\tau$はせん断応力とは呼ばず、粘性応力と言う。
 
+\begin{align}
+\tau &= \mu (\nabla \ve{v} + {}^t(\nabla \ve{v})) 
++\left(\zeta -\frac{2}{3}\mu\right) (\nabla \cdot \ve{v})  I \\
+\end{align}
+
+せん断応力は$\sigma$の非対角成分のことであり、$\tau$はせん断応力とは呼ばず、粘性応力と言う。
+その他にも、教科書によっては
+\begin{align}
+P&=-\sigma \\
+&= pI + \Pi \\
+\Pi &= -\tau
+\end{align}
+と書いているケースもあるので注意($P$を圧力テンソルと呼ぶ)。
+応力だと向きが分かりづらいので静水圧とせん断成分の和という形で書くのだろう。
 
 <p>
 <a href="index.html">戻る</a>
