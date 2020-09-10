@@ -18,13 +18,15 @@
             TeX: {
                 equationNumbers: { autoNumber: "AMS" },
                 Macros: {
-                    Vec: ['{\\boldsymbol{#1}}',1],
-                    diff: '{\\,\\mathrm d}',
+                    ve: ['{\\boldsymbol{#1}}',1],
+                    rmd: '{\\,\\mathrm d}',
                     dif:    ['{\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}}',2],
                     Dif:    ['{\\frac{\\mathrm{D} #1}{\\mathrm{D} #2}}',2],
                     ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
                     pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
                     pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                    mbra: ['{\\left( #1 \\right)}',1],
+                    sbra: ['{\\left[ #1 \\right]}',1],
                 }
             },
             tex2jax: {
@@ -41,111 +43,111 @@
 以下のような流体の運動方程式(運動量保存則)を導出する。
 
 \begin{align}
-\rho \Dif{\Vec{v}}{t} = \nabla \cdot \sigma + \rho \Vec{f}
+\rho \Dif{\ve{v}}{t} = \nabla \cdot \sigma + \rho \ve{f}
 \end{align}
 まずはReynoldsの輸送定理
 \begin{align}
-\Dif{}{t}\int_{B_t} \phi(\Vec{x},t) \diff V
+\Dif{}{t}\int_{B_t} \phi(\ve{x},t) \rmd V
 &=
-\int_{B_t}\left(\Dif{\phi(\Vec{x},t)}{t} + \phi(\Vec{x},t)\nabla \cdot \Vec{v}\right)\diff V
+\int_{B_t}\left(\Dif{\phi(\ve{x},t)}{t} + \phi(\ve{x},t)\nabla \cdot \ve{v}\right)\rmd V
 \end{align}
 
 を用いた証明を紹介する。
 ある検査領域中の流体の運動量の時間変化は、その流体に作用する面積力と体積力によるものとする。この時、運動方程式は、
 
 \begin{align}
-\Dif{}{t}\int_{B_t} \rho \Vec{v} \diff V
-=\int_{\partial B_t} \sigma (\diff \Vec{S}) + \int_{B_t}\rho \Vec{f}\diff V
+\Dif{}{t}\int_{B_t} \rho \ve{v} \rmd V
+=\int_{\partial B_t} \sigma (\rmd \ve{S}) + \int_{B_t}\rho \ve{f}\rmd V
 \end{align}
 
 となる。面積力たる右辺第一項は、
 
 \begin{align}
-\int_{\partial B_t}  \sigma (\diff \Vec{S})
-&=\int_{\partial B_t}  \sigma (\Vec{n}\diff S) \\ 
-&=\int_{\partial B_t}  \sigma \Vec{n}\diff S  \\ 
-&=\int_{\partial B_t}  \sigma_{ij} n_j\diff S \\ 
-&=\int_{B_t} \pdif{\sigma_{ij}}{x_j}\diff V \\ 
-&=\int_{B_t} \pdif{\sigma_{ji}}{x_j}\diff V \\ 
-&=\int_{B_t} \nabla \cdot \sigma \diff V \\ 
+\int_{\partial B_t}  \sigma (\rmd \ve{S})
+&=\int_{\partial B_t}  \sigma (\ve{n}\rmd S) \\ 
+&=\int_{\partial B_t}  \sigma \ve{n}\rmd S  \\ 
+&=\int_{\partial B_t}  \sigma_{ij} n_j\rmd S \\ 
+&=\int_{B_t} \pdif{\sigma_{ij}}{x_j}\rmd V \\ 
+&=\int_{B_t} \pdif{\sigma_{ji}}{x_j}\rmd V \\ 
+&=\int_{B_t} \nabla \cdot \sigma \rmd V \\ 
 \end{align}
 
 となる。途中で応力テンソル$\sigma$の線型性や対称性を利用していることに注意せよ。
 また、左辺は
 
 \begin{align}
-\Dif{}{t}\int_{B_t} \rho \Vec{v} \diff V
-&= \int_{B_t} \left( \Dif{(\rho \Vec{v})}{t} +
-\rho \Vec{v} (\nabla \cdot \Vec{v}) \right) \diff V \\
-&= \int_{B_t} \left(\rho\Dif{\Vec{v}}{t} +
-\Vec{v} \left(\Dif{\rho}{t}+\rho\nabla \cdot \Vec{v}\right)\right) \diff V \\
-&= \int_{B_t} \rho\Dif{\Vec{v}}{t} \diff V
+\Dif{}{t}\int_{B_t} \rho \ve{v} \rmd V
+&= \int_{B_t} \left( \Dif{(\rho \ve{v})}{t} +
+\rho \ve{v} (\nabla \cdot \ve{v}) \right) \rmd V \\
+&= \int_{B_t} \left(\rho\Dif{\ve{v}}{t} +
+\ve{v} \left(\Dif{\rho}{t}+\rho\nabla \cdot \ve{v}\right)\right) \rmd V \\
+&= \int_{B_t} \rho\Dif{\ve{v}}{t} \rmd V
 \end{align}
 
 となる。途中で連続の式
 
 \begin{align}
-\Dif{\rho}{t} + \rho \nabla\cdot \Vec{v}=0
+\Dif{\rho}{t} + \rho \nabla\cdot \ve{v}=0
 \end{align}
 
 を用いた。連続の式もまた輸送定理によって以下のように導かれる。
 
 \begin{align}
-\Dif{}{t}\int_{B_t} \rho \diff V = 
-\int_{B_t}\left(\Dif{\rho}{t} + \rho \nabla\cdot \Vec{v}\right) \diff V=0
+\Dif{}{t}\int_{B_t} \rho \rmd V = 
+\int_{B_t}\left(\Dif{\rho}{t} + \rho \nabla\cdot \ve{v}\right) \rmd V=0
 \end{align}
 
 以上から、流体の運動方程式は
 
 \begin{align}
-\rho \Dif{\Vec{v}}{t} = \nabla \cdot \sigma + \rho \Vec{f} \label{e41}
+\rho \Dif{\ve{v}}{t} = \nabla \cdot \sigma + \rho \ve{f} \label{e41}
 \end{align}
 
 となる。ここで、以下の構成方程式を代入する。
 
 \begin{align}
-\sigma &= -pI + \mu (\nabla \Vec{v} + {}^t(\nabla \Vec{v})) 
-+\left(\zeta -\frac{2}{3}\mu\right) (\nabla \cdot \Vec{v})  I \label{e42}
+\sigma &= -pI + \mu (\nabla \ve{v} + {}^t(\nabla \ve{v})) 
++\left(\zeta -\frac{2}{3}\mu\right) (\nabla \cdot \ve{v})  I \label{e42}
 \end{align}
 
 ベクトル解析の公式として、以下の3式が成り立つ。
 
 \begin{align}
-\nabla \cdot (\nabla \Vec{v})
-&= \Vec{e}_i \pdif{(\nabla \Vec{v})_{ji}}{x_j} \\
-&= \Vec{e}_i \pdif{}{x_j}\pdif{v_i}{x_j} \\
-&= \Vec{e}_i \nabla^2 v_i \\
-&= \nabla^2 \Vec{v} \\
+\nabla \cdot (\nabla \ve{v})
+&= \ve{e}_i \pdif{(\nabla \ve{v})_{ji}}{x_j} \\
+&= \ve{e}_i \pdif{}{x_j}\pdif{v_i}{x_j} \\
+&= \ve{e}_i \nabla^2 v_i \\
+&= \nabla^2 \ve{v} \\
 \end{align}
 
 \begin{align}
-\nabla \cdot {}^t(\nabla \Vec{v})
-&= \Vec{e}_i \pdif{(\nabla \Vec{v})_{ij}}{x_j} \\
-&= \Vec{e}_i \pdif{}{x_j}\pdif{v_j}{x_i} \\
-&= \Vec{e}_i \pdif{}{x_i}\pdif{v_j}{x_j} \\
-&= \nabla (\nabla \cdot \Vec{v})
+\nabla \cdot {}^t(\nabla \ve{v})
+&= \ve{e}_i \pdif{(\nabla \ve{v})_{ij}}{x_j} \\
+&= \ve{e}_i \pdif{}{x_j}\pdif{v_j}{x_i} \\
+&= \ve{e}_i \pdif{}{x_i}\pdif{v_j}{x_j} \\
+&= \nabla (\nabla \cdot \ve{v})
 \end{align}
 
 \begin{align}
-\nabla \cdot\{ (\nabla \cdot \Vec{v})I \}
-&= \Vec{e}_i \pdif{}{x_j}((\nabla \cdot \Vec{v})I)_{ji}\\
-&= \Vec{e}_i \pdif{}{x_j}\left( \pdif{v_k}{x_k}\delta_{ji} \right)\\
-&= \Vec{e}_i \pdif{}{x_i}\pdif{v_k}{x_k} \\
-&= \nabla (\nabla \cdot \Vec{v})
+\nabla \cdot\{ (\nabla \cdot \ve{v})I \}
+&= \ve{e}_i \pdif{}{x_j}((\nabla \cdot \ve{v})I)_{ji}\\
+&= \ve{e}_i \pdif{}{x_j}\left( \pdif{v_k}{x_k}\delta_{ji} \right)\\
+&= \ve{e}_i \pdif{}{x_i}\pdif{v_k}{x_k} \\
+&= \nabla (\nabla \cdot \ve{v})
 \end{align}
 
 よって、\eqref{e41}、\eqref{e42}は
 
 \begin{align}
-\rho \Dif{\Vec{v}}{t}
+\rho \Dif{\ve{v}}{t}
 &=
--\nabla p + \mu \nabla^2\Vec{v}+\mu\nabla(\nabla \cdot \Vec{v})
-+\left(\zeta -\frac{2}{3}\mu\right) \nabla(\nabla \cdot \Vec{v})
-+\rho \Vec{f} \\
+-\nabla p + \mu \nabla^2\ve{v}+\mu\nabla(\nabla \cdot \ve{v})
++\left(\zeta -\frac{2}{3}\mu\right) \nabla(\nabla \cdot \ve{v})
++\rho \ve{f} \\
 &=
--\nabla p + \mu \nabla^2\Vec{v}
-+\left(\zeta+\frac{1}{3}\mu\right) \nabla(\nabla \cdot \Vec{v})
-+\rho \Vec{f} \\
+-\nabla p + \mu \nabla^2\ve{v}
++\left(\zeta+\frac{1}{3}\mu\right) \nabla(\nabla \cdot \ve{v})
++\rho \ve{f} \\
 \end{align}
 
 となる。
@@ -154,64 +156,72 @@
 すなわち、固定検査領域の運動量の蓄積速度は、境界を通じた運動量の流入量と検査体積に対する面積力・体積力によるもの(これはLagrange的アプローチの時と同じ)と考える。
 
 \begin{align}
-\dif{}{t}\int_{B_0} \rho \Vec{v} \diff V
+\dif{}{t}\int_{B_0} \rho \ve{v} \rmd V
 &=
--\int_{\partial B_0} \rho \Vec{v} (\Vec{v}\cdot n)dS
-+\int_{\partial B_0} \sigma (\diff \Vec{S}) + \int_{B_0}\rho \Vec{f}\diff V
+-\int_{\partial B_0} \rho \ve{v} (\ve{v}\cdot n)dS
++\int_{\partial B_0} \sigma (\rmd \ve{S}) + \int_{B_0}\rho \ve{f}\rmd V
 \end{align}
 
 右辺の第二、三項は先程と同様に処理できる。
 左辺第一項は以下のようになる。
 
 \begin{align}
-\dif{}{t}\int_{B_0} \rho \Vec{v} \diff V
+\dif{}{t}\int_{B_0} \rho \ve{v} \rmd V
 =
-\int_{B_0}\pdif{(\rho \Vec{v})}{t} \diff V
+\int_{B_0}\pdif{(\rho \ve{v})}{t} \rmd V
 \end{align}
 
 右辺第一項は以下のようになる。
 
 \begin{align}
--\int_{\partial B_0} \rho \Vec{v} (\Vec{v}\cdot n)\diff S
-&=-\int_{\partial B_0} \rho v_i \Vec{e}_i (v_j n_j)\diff S \\
-&=-\int_{ B_0}\Vec{e}_i \pdif{\rho v_j v_i}{x_j}\diff V \\ 
-&=-\int_{ B_0} \nabla \cdot (\rho \Vec{v}\Vec{v})\diff V 
+-\int_{\partial B_0} \rho \ve{v} (\ve{v}\cdot n)\rmd S
+&=-\int_{\partial B_0} \rho v_i \ve{e}_i (v_j n_j)\rmd S \\
+&=-\int_{ B_0}\ve{e}_i \pdif{\rho v_j v_i}{x_j}\rmd V \\ 
+&=-\int_{ B_0} \nabla \cdot (\rho \ve{v}\ve{v})\rmd V 
 \end{align}
 
 この項を左辺に移項すると、左辺は以下のように計算できる。
 
 \begin{align}
-\int_{B_0}\pdif{(\rho \Vec{v})}{t} \diff V
-+\int_{ B_0} \nabla \cdot (\rho \Vec{v}\Vec{v}) \diff V 
+\int_{B_0}
+\pdif{(\rho \ve{v})}{t} \rmd V
++\int_{ B_0} \nabla \cdot (\rho \ve{v}\ve{v}) \rmd V 
 &=
 \int_{B_0}\left[
-\rho \pdif{ \Vec{v}}{t}+\Vec{v} \pdif{\rho}{t}
-+\Vec{v}  (\nabla \cdot (\rho \Vec{v})) + \rho \Vec{v}\cdot \nabla \Vec{v} 
-\right]\diff V \\
+\rho \pdif{ \ve{v}}{t}+\ve{v} \pdif{\rho}{t}
++\ve{v}  (\nabla \cdot (\rho \ve{v})) + \rho \ve{v}\cdot \nabla \ve{v} 
+\right]\rmd V \\
 &=
 \int_{B_0}\left[
-\rho \left(\pdif{ \Vec{v}}{t}+  \Vec{v}\cdot \nabla \Vec{v} 
+\rho \left(\pdif{ \ve{v}}{t}+  \ve{v}\cdot \nabla \ve{v} 
 \right)+
-\Vec{v}\left(
+\ve{v}\left(
  \pdif{\rho}{t}
-+\nabla \cdot (\rho \Vec{v})\right)
-\right]\diff V \\
++\nabla \cdot (\rho \ve{v})\right)
+\right]\rmd V \\
 &=
-\int_{B_0} \rho \Dif{\Vec{v}}{t}\diff V
+\int_{B_0} \rho \Dif{\ve{v}}{t}\rmd V
 \end{align}
 
 ただしこの時、連続の式と以下の公式を用いた。
 おそらく成分だけで計算を進めた方が分かりやすい。
 
 \begin{align}
-\nabla \cdot (\rho \Vec{v}\Vec{v})
-&=\Vec{e}_i \pdif{(\rho \Vec{v}\Vec{v})_{ji}}{x_j} \\
-&=\Vec{e}_i \pdif{(\rho v_jv_i)}{x_j} \\
-&=v_i\Vec{e}_i \pdif{(\rho v_j)}{x_j} + \rho v_j\Vec{e}_i \pdif{v_i}{x_j} \\
-&=\Vec{v}  (\nabla \cdot (\rho \Vec{v})) + \rho \Vec{v}\cdot \nabla \Vec{v} 
+\nabla \cdot (\rho \ve{v}\ve{v})
+&=\ve{e}_i \pdif{(\rho \ve{v}\ve{v})_{ji}}{x_j} \\
+&=\ve{e}_i \pdif{(\rho v_jv_i)}{x_j} \\
+&=v_i\ve{e}_i \pdif{(\rho v_j)}{x_j} + \rho v_j\ve{e}_i \pdif{v_i}{x_j} \\
+&=\ve{v}  (\nabla \cdot (\rho \ve{v})) + \rho \ve{v}\cdot \nabla \ve{v} 
 \end{align}
 
 以上より、最初の運動方程式が導ける。
+ただし、以下の形もよく見られるので注意。
+
+\begin{align}
+\pdif{(\rho \ve{v})}{t}
+&=-\nabla \cdot (\rho \ve{v}\ve{v}+ P)  + \rho \ve{f} \\
+P &= -\sigma = pI + \Pi
+\end{align}
 
 <p>
 
