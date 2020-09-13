@@ -75,6 +75,24 @@ Greenの定理をベクトル場$\ve{F}(\ve{x})=\{F_i(\ve{x})\}$に適用する�
 = \int_S (\phi \ve{u})\cdot \ve{n} \rmd S - \int_V \nabla \phi \cdot \ve{u}\rmd V
 \end{align}
 
+その他にも、テンソル-ベクトル内積$\ve{F}=\Phi \cdot \ve{u}$を$\ve{F}$にとってみる。
+まず、以下のように式を変形する。
+
+\begin{align}
+\nabla \cdot (\Phi \cdot \ve{u})
+&= \pdif{}{x_i}(\Phi_{ij}u_j) \\
+&= \pdif{\Phi_{ij}}{x_i}u_j + \Phi_{ij} \pdif{u_j}{x_i} \\
+&= \pdif{\Phi_{ji}}{x_j}u_i + \Phi_{ij} \pdif{u_j}{x_i} \\
+&= (\nabla \cdot \Phi)\cdot \ve{u} + \Phi : \nabla \ve{u}
+\end{align}
+
+したがって、以下の部分積分の公式が成り立つ。
+
+\begin{align}
+\int_V (\nabla \cdot \Phi) \cdot \ve{u}\rmd V 
+= \int_V (\Phi \cdot \ve{u}) \cdot \ve{n} \rmd S
+- \int_S \Phi : \nabla \ve{u} \rmd V
+\end{align}
 
 
 <p>
