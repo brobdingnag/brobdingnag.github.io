@@ -18,13 +18,15 @@
             TeX: {
                 equationNumbers: { autoNumber: "AMS" },
                 Macros: {
-                    Vec: ['{\\boldsymbol{#1}}',1],
-                    diff: '{\\,\\mathrm d}',
+                    ve: ['{\\boldsymbol{#1}}',1],
+                    rmd: '{\\,\\mathrm d}',
                     dif:    ['{\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}}',2],
                     Dif:    ['{\\frac{\\mathrm{D} #1}{\\mathrm{D} #2}}',2],
                     ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
                     pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
                     pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                    mbra: ['{\\left( #1 \\right)}',1],
+                    sbra: ['{\\left[ #1 \\right]}',1],
                 }
             },
             tex2jax: {
@@ -40,25 +42,40 @@
 <body>
 ・Greenの定理
 <p>
-3次元空間上の関数$F(\Vec{x})$とする。
+3次元空間上の関数$F(\ve{x})$とする。
 \begin{align}
-\int_V \pdif{F}{x_i} \diff V = \int_{S}F n_i \diff S
+\int_V \pdif{F}{x_i} \rmd V = \int_{S}F n_i \rmd S
 \end{align}
 
 ・Gaussの発散定理
 <p>
-Greenの定理をベクトル場$\Vec{F}(\Vec{x})=\{F_i(\Vec{x})\}$に適用すると、
+Greenの定理をベクトル場$\ve{F}(\ve{x})=\{F_i(\ve{x})\}$に適用すると、
 \begin{align}
-\int_V \pdif{F_{(i)}}{x_{(i)}} \diff V &= \int_{S}F_{(i)} n_{(i)} \diff S \\
-\int_V \pdif{F_i}{x_i} \diff V &= \int_{S}F_i n_i \diff S \\
-\int_V \nabla \cdot \Vec{F} \diff V &= \int_{S}\Vec{F} \cdot \Vec{n} \diff S
+\int_V \pdif{F_{(i)}}{x_{(i)}} \rmd V &= \int_{S}F_{(i)} n_{(i)} \rmd S \\
+\int_V \pdif{F_i}{x_i} \rmd V &= \int_{S}F_i n_i \rmd S \\
+\int_V \nabla \cdot \ve{F} \rmd V &= \int_{S}\ve{F} \cdot \ve{n} \rmd S
 \end{align}
 となる。一行目は各成分におけるGreenの定理、二行目はそれらの和をとっている。
 
 <p>
+・重積分の部分積分
 <p>
+発散定理において$\ve{F}=\phi\ve{u}$とおくと、以下のように計算できる。
 
-主に2階のテンソルについての重要事項のまとめ
+\begin{align}
+\int_V \nabla \cdot (\phi\ve{u}) \rmd V
+&= \int_S (\ve{u}\phi) \cdot \ve{n}\rmd S \\
+&= \int_V \nabla \phi \cdot \ve{u} \rmd V + \int_V \phi \nabla \cdot \ve{u} \rmd V
+\end{align}
+
+ここから以下のような部分積分の公式が導かれる。
+
+\begin{align}
+\int_V \phi \nabla \cdot \ve{u}\rmd V
+= \int_S (\phi \ve{u})\cdot \ve{n} \rmd S - \int_V \nabla \phi \cdot \ve{u}\rmd V
+\end{align}
+
+
 
 <p>
 ・テンソル $A, B$ の内積
@@ -70,10 +87,10 @@ A:B = \mathrm{tr}[AB] = A_{ij}B_{ji}
 ・ベクトルとテンソルの内積
 
 \begin{align}
-T \cdot \Vec{a} 
-= \Vec{e}_i T_{ij} a_j \\
-\Vec{a} \cdot T
-= \Vec{e}_i a_j T_{ji}
+T \cdot \ve{a} 
+= \ve{e}_i T_{ij} a_j \\
+\ve{a} \cdot T
+= \ve{e}_i a_j T_{ji}
 \end{align}
 
 教科書によってはベクトルテンソルの内積をドットではなくコロンで表現しているので注意！
@@ -82,7 +99,7 @@ T \cdot \Vec{a}
 <p>
 ・テンソルの発散
 \begin{align}
-\nabla \cdot A = \Vec{e}_i \pdif{A_{ji}}{x_j}
+\nabla \cdot A = \ve{e}_i \pdif{A_{ji}}{x_j}
 \end{align}
 $A_{ij}$ではなく$A_{ji}$であることに注意！
 
