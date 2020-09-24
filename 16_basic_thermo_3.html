@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Euler方程式とGibbs-Duhemの式</title>
+        <meta charset="utf-8">
+        <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
+        </script>
+        <script type="text/x-mathjax-config"> <!--Math Jaxの設定-->
+          MathJax.Hub.Config({
+            "HTML-CSS": {
+                availableFonts: [],
+                preferredFont: null,
+                webFont: "TeX",
+                mtextFontInherit: true}
+          });
+          MathJax.Hub.Config({
+            TeX: {
+                equationNumbers: { autoNumber: "AMS" },
+                Macros: {
+                    ve: ['{\\boldsymbol{#1}}',1],
+                    rmd: '{\\,\\mathrm d}',
+                    dif:    ['{\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}}',2],
+                    Dif:    ['{\\frac{\\mathrm{D} #1}{\\mathrm{D} #2}}',2],
+                    ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
+                    pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
+                    pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                    mbra: ['{\\left( #1 \\right)}',1],
+                    sbra: ['{\\left[ #1 \\right]}',1],
+                }
+            },
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            },
+            "HTML-CSS": { matchFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+          });
+        </script>
+    </head>
+<body>
+熱力学第一法則から以下の式が成り立つ。
+
+\begin{align}
+\rmd U = T\rmd S -p\rmd V + \sum_{k=1}^{n} \mu_k \rmd m_k \label{161}
+\end{align}
+
+$m_k$は質量であり、$\mu_k$は単位質量あたりの化学ポテンシャルである。
+この式をエントロピーの全微分の式として読み替えると、$S=S(U,V,m_1, \cdots, m_n)$
+と考えることができ、エントロピーもまた示量変数であることが分かる。
+したがって、各示量変数を$\lambda$倍した時にエントロピーも$\lambda$倍されることから、以下の式が成り立つ。
+
+\begin{align}
+S(\lambda U, \lambda V, \lambda m_1,\cdots,\lambda m_n) =
+\lambda S(U, V, m_1,\cdots,m_n)
+\end{align}
+
+この式の両辺を$\lambda$で偏微分した後に$\lambda =1$とすると以下の式が成り立つ。
+
+\begin{align}
+&\pdif{S}{(\lambda U)}\pdif{(\lambda U)}{\lambda}+
+\pdif{S}{(\lambda V)}\pdif{(\lambda V)}{\lambda}+
+\sum_{k}\pdif{S}{(\lambda m_k)}\pdif{(\lambda m_k)}{\lambda} =S \\
+&\therefore \quad 
+U\pdif{S}{U}+
+V\pdif{S}{V}+
+\sum_{k}m_k\pdif{S}{m_k} =S \label{162} \\
+\end{align}
+
+さらにここで\eqref{161}から
+
+\begin{align}
+\pdif{S}{U} = \frac{1}{T}, \pdif{S}{V} =\frac{p}{T} , \pdif{S}{m_k} = -\frac{m_k}{T}
+\end{align}
+
+であるから、\eqref{162}は以下のように変形できる。
+
+\begin{align}
+TS= U +pV - \sum_k \mu_k m_k \label{163}
+\end{align}
+
+これをEulerの方程式と呼び、\eqref{163}の全微分をとって\eqref{161}との差をとることにより、
+以下のGibbs-Duhemの式が導ける。
+
+\begin{align}
+S\rmd T = V\rmd p - \sum_k m_k \rmd mu_k
+\end{align}
+
+<p>
+<a href="index.html">戻る</a>
+
+</body>
+</html>
