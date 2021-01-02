@@ -18,12 +18,15 @@
             TeX: {
                 equationNumbers: { autoNumber: "AMS" },
                 Macros: {
-                    Vec: ['{\\boldsymbol{#1}}',1],
-                    diff: '{\\,\\mathrm d}',
+                    ve: ['{\\boldsymbol{#1}}',1],
+                    rmd: '{\\,\\mathrm d}',
                     dif:    ['{\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}}',2],
+                    Dif:    ['{\\frac{\\mathrm{D} #1}{\\mathrm{D} #2}}',2],
                     ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
                     pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
                     pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                    mbra: ['{\\left( #1 \\right)}',1],
+                    sbra: ['{\\left[ #1 \\right]}',1],
                 }
             },
             tex2jax: {
@@ -37,38 +40,44 @@
         </script>
     </head>
 <body>
+他成分流体に対する熱力学第一法則を導出する。
+
+<!--
 <table>
 <tr>
-<td>$\Vec{v}$</td>
+<td>$\ve{v}$</td>
 <td>流体の中心速度</td>
 </tr>
 <tr>
-<td>$\Vec{v}_k$</td>
+<td>$\ve{v}_k$</td>
 <td>流体中の各成分の速度</td>
 </tr>
 </table>
+-->
 
-多成分流体の中心速度
-\begin{align}
-\boldsymbol{v}=\sum_k c_k
-\boldsymbol{v}_k \\
-\sum_k c_k =1
-\end{align}
-
-拡散速度
-\begin{align}
-\boldsymbol{w}_k&=
-\boldsymbol{v}_k-\boldsymbol{v} \\
-\sum_k c_k \boldsymbol{w}_k
-&=\sum_k c_k \boldsymbol{v}_k - \sum_k c_k \boldsymbol{v} = \boldsymbol{0}
-\end{align}
-
-熱力学第一法則
+各成分が流速\ve{k}$で流れているような$多成分流体の中心速度$v$は質量比$c_k = M_k/M$を使って以下のように書ける。
 
 \begin{align}
-du=Tds -pdv + \sum_k \mu_k dc_k \\
-ds=\frac{du}{T}+\frac{p}{T}dv-\sum_k\frac{\mu_k}{T}c_k
+\ve{v}&=\sum_k c_k\ve{v}_k \\
+\sum_k c_k &=1 \quad (\because \sum_k M_k = M)
 \end{align}
+
+この時、各成分の拡散速度$\ve{w}_k$は以下のようになる。
+第二式が成り立つことにも注意する。
+
+\begin{align}
+\ve{w}_k&=\ve{v}_k-\ve{v} \\
+\sum_k c_k \ve{w}_k&=\sum_k c_k \ve{v}_k - \sum_k c_k \ve{v} = \ve{0}
+\end{align}
+
+ここで、熱力学第一法則を以下のようにエントロピーを左辺において書き直しておく。
+
+\begin{align}
+\rmd u &= T\rmd s -p\rmd v + \sum_k \mu_k \rmd c_k \\
+\therefore \quad \rmd s &= \frac{\rmd u}{T}+\frac{p}{T}\rmd v-\sum_k\frac{\mu_k}{T}\rmd c_k
+\end{align}
+
+ただし、示量変数は全て単位質量あたりで表現されていることに注意する。
 
 Eulerの方程式
 \begin{align}
@@ -80,29 +89,29 @@ s &= \frac{u}{T}+\frac{pv}{T}-\sum_k \frac{\mu_k}{T} c_k \\
 
 全エネルギーの内部エネルギーと拡散、重心運動への分離
 \begin{align}
-e &= u+ \sum_k \frac{1}{2}c_k \boldsymbol{w}_k \cdot \boldsymbol{w}_k
-+\frac{1}{2}\boldsymbol{v}\cdot \boldsymbol{v} \\
-\rho u &= \rho e - \sum_k \frac{1}{2}\rho_k \boldsymbol{w}_k \cdot \boldsymbol{w}_k
--\frac{1}{2}\rho\boldsymbol{v}\cdot \boldsymbol{v}
+e &= u+ \sum_k \frac{1}{2}c_k \ve{w}_k \cdot \ve{w}_k
++\frac{1}{2}\ve{v}\cdot \ve{v} \\
+\rho u &= \rho e - \sum_k \frac{1}{2}\rho_k \ve{w}_k \cdot \ve{w}_k
+-\frac{1}{2}\rho\ve{v}\cdot \ve{v}
 \end{align}
 
 ベクトルの微分
 \begin{align}
-d\left(\frac{1}{2}\boldsymbol{v}\cdot \boldsymbol{v}\right)
-&= \boldsymbol{v} \cdot d\boldsymbol{v} \\
-\boldsymbol{v}\cdot d (\rho \boldsymbol{v})
+d\left(\frac{1}{2}\ve{v}\cdot \ve{v}\right)
+&= \ve{v} \cdot d\ve{v} \\
+\ve{v}\cdot d (\rho \ve{v})
 &=
-\boldsymbol{v}\cdot  \boldsymbol{v}d\rho
+\ve{v}\cdot  \ve{v}d\rho
 +
-\rho \boldsymbol{v}\cdot d \boldsymbol{v} \\
-\boldsymbol{w}_k\cdot d (\rho_k \boldsymbol{w}_k)
+\rho \ve{v}\cdot d \ve{v} \\
+\ve{w}_k\cdot d (\rho_k \ve{w}_k)
 &=
-d\rho_k \boldsymbol{w}_k\cdot  \boldsymbol{w}_k
+d\rho_k \ve{w}_k\cdot  \ve{w}_k
 +
-\rho_k \boldsymbol{w}_k\cdot d \boldsymbol{w}_k \\
-d\left(\frac{1}{2}\rho\boldsymbol{v}\cdot \boldsymbol{v}\right)
-&=\frac{1}{2}(\boldsymbol{v} \cdot d(\rho\boldsymbol{v}) + \rho\boldsymbol{v} \cdot d\boldsymbol{v})\\
-&=\boldsymbol{v} \cdot d(\rho\boldsymbol{v})-\frac{1}{2}\boldsymbol{v} \cdot \boldsymbol{v}d\rho
+\rho_k \ve{w}_k\cdot d \ve{w}_k \\
+d\left(\frac{1}{2}\rho\ve{v}\cdot \ve{v}\right)
+&=\frac{1}{2}(\ve{v} \cdot d(\rho\ve{v}) + \rho\ve{v} \cdot d\ve{v})\\
+&=\ve{v} \cdot d(\rho\ve{v})-\frac{1}{2}\ve{v} \cdot \ve{v}d\rho
 \end{align}
 
 Gibbs-Duhemの式(示強変数拘束条件)
@@ -123,8 +132,8 @@ ud\left(\frac{1}{T} \right)
 
 拡散による質量流束
 \begin{align}
-\boldsymbol{J}_k = \rho_k\boldsymbol{w}_k \\
-\sum_{k} \boldsymbol{J}_k =\boldsymbol{0}
+\ve{J}_k = \rho_k\ve{w}_k \\
+\sum_{k} \ve{J}_k =\ve{0}
 \end{align}
 
 
@@ -143,17 +152,17 @@ d(\rho u) + dp -\sum_k \rho_k d\mu_k  - \sum_k \mu_k d\rho_k
 \end{align}
 ここで、
 \begin{align}
-d(\rho u) &=d\left( \rho e - \sum_k \frac{1}{2}\rho_k \boldsymbol{w}_k \cdot \boldsymbol{w}_k
--\frac{1}{2}\rho\boldsymbol{v}\cdot \boldsymbol{v} \right) \\
+d(\rho u) &=d\left( \rho e - \sum_k \frac{1}{2}\rho_k \ve{w}_k \cdot \ve{w}_k
+-\frac{1}{2}\rho\ve{v}\cdot \ve{v} \right) \\
 &= d(\rho e)
--\sum_k \boldsymbol{w}_k\cdot d(\rho_k\boldsymbol{w}_k)
-+\frac{1}{2}\boldsymbol{w}_k \cdot \boldsymbol{w}_k d\rho_k
--\boldsymbol{v} \cdot d(\rho\boldsymbol{v})+\frac{1}{2}\boldsymbol{v} \cdot \boldsymbol{v}d\rho \\
+-\sum_k \ve{w}_k\cdot d(\rho_k\ve{w}_k)
++\frac{1}{2}\ve{w}_k \cdot \ve{w}_k d\rho_k
+-\ve{v} \cdot d(\rho\ve{v})+\frac{1}{2}\ve{v} \cdot \ve{v}d\rho \\
 &=d(\rho e)
--\sum_k \boldsymbol{w}_k \cdot d\boldsymbol{J}_k - \boldsymbol{v} \cdot d(\rho \boldsymbol{v})
+-\sum_k \ve{w}_k \cdot d\ve{J}_k - \ve{v} \cdot d(\rho \ve{v})
 +\sum_k \left(
-\frac{1}{2}\boldsymbol{w}_k \cdot \boldsymbol{w}_k +
-\frac{1}{2}\boldsymbol{v} \cdot \boldsymbol{v}
+\frac{1}{2}\ve{w}_k \cdot \ve{w}_k +
+\frac{1}{2}\ve{v} \cdot \ve{v}
 \right)d\rho_k
 \end{align}
 に注意する。以上より、
@@ -161,36 +170,36 @@ d(\rho u) &=d\left( \rho e - \sum_k \frac{1}{2}\rho_k \boldsymbol{w}_k \cdot \bo
 Td(\rho s) &= d(\rho u) - \sum_k \mu_k d\rho_k \\
 d(\rho s) &= \frac{1}{T}d(\rho u) - \frac{1}{T}\sum_k \mu_k d\rho_k \\
 &= \frac{1}{T}d(\rho e)
--\sum_k \frac{\boldsymbol{w}_k}{T} \cdot d\boldsymbol{J}_k
-- \frac{\boldsymbol{v}}{T} \cdot d(\rho \boldsymbol{v})
+-\sum_k \frac{\ve{w}_k}{T} \cdot d\ve{J}_k
+- \frac{\ve{v}}{T} \cdot d(\rho \ve{v})
 -\frac{1}{T}\sum_k \left(\mu_k
--\frac{1}{2}\boldsymbol{w}_k \cdot \boldsymbol{w}_k
--\frac{1}{2}\boldsymbol{v} \cdot \boldsymbol{v}
+-\frac{1}{2}\ve{w}_k \cdot \ve{w}_k
+-\frac{1}{2}\ve{v} \cdot \ve{v}
 \right)d\rho_k
 \end{align}
 ここで、
 \begin{align}
-\sum_k \boldsymbol{J}_k =\boldsymbol{0} \\
-\boldsymbol{J}_n = -\sum^{n-1}_{k=1}\boldsymbol{J}_k
+\sum_k \ve{J}_k =\ve{0} \\
+\ve{J}_n = -\sum^{n-1}_{k=1}\ve{J}_k
 \end{align}
 から、
 \begin{align}
-\sum_k \frac{\boldsymbol{w}_k}{T}\cdot d\boldsymbol{J}_k
-&=\sum^{n-1}_{k=1} \frac{\boldsymbol{w}_k}{T}\cdot d\boldsymbol{J}_k
-+ \frac{\boldsymbol{w}_n}{T}\cdot d\boldsymbol{J}_n \\
-&=\sum^{n-1}_{k=1} \frac{\boldsymbol{w}_k}{T}\cdot d\boldsymbol{J}_k
-- \frac{\boldsymbol{w}_n}{T}\cdot \sum^{n-1}_{k=1} d\boldsymbol{J}_k \\
-&=\sum^{n-1}_{k=1} \frac{\boldsymbol{w}_k-\boldsymbol{w}_n}{T}\cdot d\boldsymbol{J}_k
+\sum_k \frac{\ve{w}_k}{T}\cdot d\ve{J}_k
+&=\sum^{n-1}_{k=1} \frac{\ve{w}_k}{T}\cdot d\ve{J}_k
++ \frac{\ve{w}_n}{T}\cdot d\ve{J}_n \\
+&=\sum^{n-1}_{k=1} \frac{\ve{w}_k}{T}\cdot d\ve{J}_k
+- \frac{\ve{w}_n}{T}\cdot \sum^{n-1}_{k=1} d\ve{J}_k \\
+&=\sum^{n-1}_{k=1} \frac{\ve{w}_k-\ve{w}_n}{T}\cdot d\ve{J}_k
 \end{align}
 より、
 \begin{align}
 d(\rho s)
 &= \frac{1}{T}d(\rho e)
--\sum^{n-1}_{k=1} \frac{\boldsymbol{w}_k-\boldsymbol{w}_n}{T}\cdot d\boldsymbol{J}_k
-- \frac{\boldsymbol{v}}{T} \cdot d(\rho \boldsymbol{v})
+-\sum^{n-1}_{k=1} \frac{\ve{w}_k-\ve{w}_n}{T}\cdot d\ve{J}_k
+- \frac{\ve{v}}{T} \cdot d(\rho \ve{v})
 -\frac{1}{T}\sum_k \left(\mu_k
--\frac{1}{2}\boldsymbol{w}_k \cdot \boldsymbol{w}_k
--\frac{1}{2}\boldsymbol{v} \cdot \boldsymbol{v}
+-\frac{1}{2}\ve{w}_k \cdot \ve{w}_k
+-\frac{1}{2}\ve{v} \cdot \ve{v}
 \right)d\rho_k
 \end{align}
 という熱力学的関係式が成り立つ。
@@ -198,19 +207,19 @@ d(\rho s)
 \begin{align}
 \bar{\mu}_k = 
 \mu_k
--\frac{1}{2}\boldsymbol{w}_k \cdot \boldsymbol{w}_k
--\frac{1}{2}\boldsymbol{v} \cdot \boldsymbol{v}
+-\frac{1}{2}\ve{w}_k \cdot \ve{w}_k
+-\frac{1}{2}\ve{v} \cdot \ve{v}
 \end{align}
 とすると、
 \begin{align}
 d(\rho s)
 &= \frac{1}{T}d(\rho e)
--\sum^{n-1}_{k=1} \frac{\boldsymbol{w}_k-\boldsymbol{w}_n}{T}\cdot d\boldsymbol{J}_k
-- \frac{\boldsymbol{v}}{T} \cdot d(\rho \boldsymbol{v})
+-\sum^{n-1}_{k=1} \frac{\ve{w}_k-\ve{w}_n}{T}\cdot d\ve{J}_k
+- \frac{\ve{v}}{T} \cdot d(\rho \ve{v})
 -\sum_k \frac{\bar{\mu}_k}{T}d\rho_k
 \end{align}
 とも書ける。これは、
-$\rho s = \rho s(\rho e,\boldsymbol{J}_k,\rho \boldsymbol{v},\rho_k)$
+$\rho s = \rho s(\rho e,\ve{J}_k,\rho \ve{v},\rho_k)$
 が導かれたことを意味する。すなわち、エントロピー密度はエネルギー密度、
 拡散流、運動量密度、質量密度を決めれば決まると言える。
 

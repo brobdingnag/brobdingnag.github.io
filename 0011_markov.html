@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>メモ帳</title>
+        <meta charset="utf-8">
+        <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
+        </script>
+        <script type="text/x-mathjax-config"> <!--Math Jaxの設定-->
+          MathJax.Hub.Config({
+            "HTML-CSS": {
+                availableFonts: [],
+                preferredFont: null,
+                webFont: "TeX",
+                mtextFontInherit: true}
+          });
+          MathJax.Hub.Config({
+            TeX: {
+                equationNumbers: { autoNumber: "AMS" },
+                Macros: {
+                    Vec: ['{\\boldsymbol{#1}}',1],
+                    diff: '{\\,\\mathrm d}',
+                    dif:    ['{\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}}',2],
+                    Dif:    ['{\\frac{\\mathrm{D} #1}{\\mathrm{D} #2}}',2],
+                    ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
+                    pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
+                    pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                }
+            },
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            },
+            "HTML-CSS": { matchFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+          });
+        </script>
+    </head>
+<body>
+
+$X(t)$：時間によって偶然変化する確率変数。
+
+<p>
+$\{X(t);t\ge0\}$：確率過程(確率変数の集まり)。
+
+<p>
+Markov過程：ある時点における事象の確率が直前の結果にのみ影響される確率過程。
+
+<p>
+Markov連鎖：離散Markov過程のこと。数式による定義は以下の通り。
+\begin{align}
+P(X_{n+1}=j|X_0=x_0, \cdots, X_n=i) = P(X_{n+1}=j|X_n=i)
+\end{align}
+$n$によらず、$i,j$のみで決まる時には時間的に一様であると言う。
+
+<p>
+
+<p>
+\begin{align}
+\end{align}
+
+<p>
+<a href="index.html">戻る</a>
+
+</body>
+</html>

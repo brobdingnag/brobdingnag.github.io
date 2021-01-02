@@ -94,35 +94,42 @@ Carnotの定理の結論の式
 
 <p>
 系が可逆サイクルであると仮定し、その時吸収する熱量を$\rmd 'q_{\rm rev}$とする。
-このとき、以下のようにエントロピー$S$の微小変化を定義する。
+このとき、以下のように系のエントロピー$S_{\rm sys}$の微小変化を定義する。
 
 \begin{align}
-\rmd S = \frac{\rmd' q_{\rm rev}}{T_e}
+\rmd S_{\rm sys} = \frac{\rmd' q_{\rm rev}}{T_{\rm sys}}
 \end{align}
 
-この時、Clausiusの式から以下の式が成り立ち、エントロピー$S$が状態量であると分かる。
+ただし、可逆過程であれば$T_{e}\simeq T_{\rm sys}$であり、エントロピーが「系の」変数で書けることに注意。
+この時、Clausiusの式から以下の式が成り立ち、エントロピー$S_{\rm sys}$が状態量であると分かる。
 
 \begin{align}
-\oint \rmd S =0
+\oint \rmd S_{\rm sys} =0
 \end{align}
 
 次に、系が$\rmd 'q$の熱を吸収しながら$A$から$B$に変化する際に
 
 \begin{align}
-\Delta S =S_B- S_A \geq \int^{B}_{A} \frac{\rmd'q}{T_e} \label{151}
+\Delta S_{\rm sys} =S^B_{\rm sys}- S^A_{\rm sys} \geq \int^{B}_{A} \frac{\rmd'q}{T_e} \label{151}
 \end{align}
 
-が成り立つことを示す。Clausiusの式の左辺において、$A\rightarrow B$(可逆or不可逆の任意の経路)と$B\rightarrow A$(可逆)とし、$\rmd'q'$をサイクル全体で吸収する熱として強調しておくと以下のように式変形できる。
+が成り立つことを示す。Clausiusの式の左辺において、$A\rightarrow B$(可逆or不可逆の任意の経路)と$B\rightarrow A$(可逆)とすると以下のように変形できる。
 
 \begin{align}
 \oint \frac{\rmd 'q'}{T_e}
-&=\int^{B}_{A}\frac{\rmd'q}{T_e}+\int^{A}_{B}\frac{\rmd'q_{\rm rev}}{T_e} \\
-&=\int^{B}_{A}\frac{\rmd'q}{T_e} + S_A - S_B \leq 0
+&=\int^{B}_{A}\frac{\rmd'q}{T_e}+\int^{A}_{B}\frac{\rmd'q_{\rm rev}}{T_{\rm sys}} \\
+&=\int^{B}_{A}\frac{\rmd'q}{T_e} + S^A_{\rm sys} - S^B_{\rm sys} \leq 0
 \end{align}
 
 したがって、\eqref{151}が成り立つ。
 ただし、エントロピーの状態量としての性質を用いたことに注意する。
+また、これを微小変化で見ると、以下のようにも書ける。
 
+\begin{align}
+\rmd S_{\rm sys} \geq \frac{\rmd' q}{T_e}
+\end{align}
+
+もし系が孤立系であれば$\rmd' q=0$から、$\rmd S_{\rm sys}\geq 0$となる。
 
 <p>
 <a href="index.html">戻る</a>

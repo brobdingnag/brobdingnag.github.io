@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Gitについて</title>
+        <title>メモ帳</title>
         <meta charset="utf-8">
         <script type="text/javascript"
             src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
@@ -18,13 +18,15 @@
             TeX: {
                 equationNumbers: { autoNumber: "AMS" },
                 Macros: {
-                    Vec: ['{\\boldsymbol{#1}}',1],
-                    diff: '{\\,\\mathrm d}',
+                    ve: ['{\\boldsymbol{#1}}',1],
+                    rmd: '{\\,\\mathrm d}',
                     dif:    ['{\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}}',2],
                     Dif:    ['{\\frac{\\mathrm{D} #1}{\\mathrm{D} #2}}',2],
                     ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
                     pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
                     pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                    mbra: ['{\\left( #1 \\right)}',1],
+                    sbra: ['{\\left[ #1 \\right]}',1],
                 }
             },
             tex2jax: {
@@ -39,16 +41,54 @@
     </head>
 <body>
 
-gitのごく基本的なコマンド操作について
+以下は足し算addを多重定義（オーバーロード）した例である。
+
+<pre>
+<code>
+int add(int a,int b) {
+    return a+b;
+}
+double add(double a,double b) {
+    return a+b;
+}
+</code>
+</pre>
+
+
+次に、addをひとまとめにした関数テンプレートを定義した。
+
+<pre>
+<code>
+template &lt;class T&gt;
+T Add(T a,T b){
+    return a+b;
+}
+</code>
+</pre>
+
+呼び出しもとに応じて、Tの部分にintやdoubleが代入されると考えればよい。
+次は、テンプレートの例外処理を示す。
+
+<pre>
+<code>
+template &lt;class T&gt;
+T Add(T a,T b){
+    return a+b;
+}
+
+template &lt;&gt;
+int add(int a,int b){
+    return a + b + 1;
+}
+</code>
+</pre>
+上のコードでは、整数を引数にとった時だけ、2数の和に1を加えて返すことになる。
+
 
 <p>
-想定環境：ローカルでコードを開発し、それをgithub上で管理する。
 
 <p>
-
-
-<p>
-<a href="index.html">戻る</a>
+<a href="cplus.html">戻る</a>
 
 </body>
 </html>

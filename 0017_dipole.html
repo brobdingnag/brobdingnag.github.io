@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>メモ帳</title>
+        <meta charset="utf-8">
+        <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
+        </script>
+        <script type="text/x-mathjax-config"> <!--Math Jaxの設定-->
+          MathJax.Hub.Config({
+            "HTML-CSS": {
+                availableFonts: [],
+                preferredFont: null,
+                webFont: "TeX",
+                mtextFontInherit: true}
+          });
+          MathJax.Hub.Config({
+            TeX: {
+                equationNumbers: { autoNumber: "AMS" },
+                Macros: {
+                    ve: ['{\\boldsymbol{#1}}',1],
+                    rmd: '{\\,\\mathrm d}',
+                    dif:    ['{\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}}',2],
+                    Dif:    ['{\\frac{\\mathrm{D} #1}{\\mathrm{D} #2}}',2],
+                    ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
+                    pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
+                    pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                    mbra: ['{\\left( #1 \\right)}',1],
+                    sbra: ['{\\left[ #1 \\right]}',1],
+                }
+            },
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            },
+            "HTML-CSS": { matchFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+          });
+        </script>
+    </head>
+<body>
+
+位置$\ve{x}_1, \ve{x}_2, \cdots$に電荷があるとすると、位置$\ve{r}$での電場$\phi(\ve{r})$は
+\begin{align}
+\phi(\ve{r}) = \sum_i \frac{1}{4\pi \varepsilon_0} \frac{q_i}{|\ve{r}-\ve{x}_i|}
+\end{align}
+となる。電荷が電荷分布$\rho(\ve{x})$によって与えられるとすると、
+\begin{align}
+\phi(\ve{r}) = \int_V \frac{1}{4\pi \varepsilon_0} \frac{\rho(\ve{x})}{|\ve{r}-\ve{x}|} \rmd V
+\end{align}
+となる。
+ここで、$(\ve{r}-\ve{x})^{-1/2}$について、$|\ve{r}| \gg |\ve{x}|$として展開すると、以下のようになる。
+\begin{align}
+\frac{1}{|\ve{r} - \ve{x}|} 
+&= \frac{1}{r} \sbra{
+    1-\frac{2\ve{r}\cdot \ve{x}}{r^2} + \frac{x^2}{r^2}
+    }^{-\frac{1}{2}} \\
+&= \frac{1}{r} \sbra{
+    1
+    -\frac{1}{2}\mbra{1-\frac{2\ve{r}\cdot \ve{x}}{r^2} + \frac{x^2}{r^2}}
+    +\frac{3}{8}\mbra{1-\frac{2\ve{r}\cdot \ve{x}}{r^2} + \frac{x^2}{r^2}}^2 + \cdots
+} \\
+&=
+\frac{1}{r} + \frac{\ve{r}\cdot\ve{x}}{r^3}
++ \frac{1}{2}\frac{3(\ve{r}\cdot\ve{x})^2 - r^2x^2}{r^5}+\cdots
+\end{align}
+ここでは以下の展開式を用いた。
+\begin{align}
+(1+x)^{\frac{1}{2}} = 1 - \frac{1}{2}x + \frac{3}{8}x^2 + \cdots
+\end{align}
+この時、$x$の3次以降の項は無視した。
+したがって、$\phi(\ve{r})$は
+\begin{align}
+\phi(\ve{r}) = \phi_1(\ve{r}) + \phi_2(\ve{r}) + \phi_3(\ve{r}) + \cdots
+\end{align}
+\begin{align}
+\phi_1(\ve{r}) = \frac{q}{4\pi \varepsilon_0 r}
+\end{align}
+\begin{align}
+\phi_2(\ve{r}) = \frac{1}{4\pi \varepsilon_0 r^2} \ve{p} \cdot \frac{\ve{r}}{r}
+\end{align}
+\begin{align}
+\phi_3(\ve{r}) = \frac{1}{4\pi \varepsilon_0 r^3} \sum_{i,j} \frac{Q_{ij}}{2} \frac{r_ir_j}{r^2}
+\end{align}
+となる。
+ただし、
+\begin{align}
+q = \int_V \rho(\ve{x}) \rmd V
+\end{align}
+\begin{align}
+\ve{p} = \int_V \ve{x}\rho(\ve{x}) \rmd V
+\end{align}
+\begin{align}
+Q_{ij} = \int_V (3x_ix_j - \delta_{ij}x^2)\rho(\ve{x}) \rmd V
+\end{align}
+上から電気単極子モーメント(電荷)、電気双極子モーメント、電気四重極子モーメントと定義した。
+
+双極子モーメントの作る電場は$\phi_2(\ve{r})$を微分することにより、
+\begin{align}
+\ve{E}(\ve{r}) 
+&= -\nabla \phi_2(\ve{r}) 
+= -\frac{1}{4\pi\varepsilon_0}\nabla\mbra{\frac{\ve{p}\cdot \ve{r}}{r^3}}
+\end{align}
+であり、
+\begin{align}
+\nabla\mbra{\frac{\ve{p}\cdot \ve{r}}{r^3}}
+&= \pdif{}{r_j}\mbra{p_ir_i(r_kr_k)^{-\frac{3}{2}}} \\
+&= p_i(r_kr_k)^{-\frac{3}{2}}\pdif{r_i}{r_j}
+-3p_ir_i(r_kr_k)^{-\frac{5}{2}}r_k\pdif{r_k}{r_j} \\
+&= p_i(r_kr_k)^{-\frac{3}{2}}\delta_{ij}
+-3p_ir_i(r_kr_k)^{-\frac{5}{2}}r_k\delta_{kj} \\
+&=\frac{\ve{p}}{r^3} - \frac{3(\ve{p}\cdot \ve{r})\ve{r}}{r^5}
+\end{align}
+から、
+\begin{align}
+\ve{E}(\ve{r})&=
+-\frac{1}{4\pi \varepsilon_0}\sbra{\frac{\ve{p}}{r^3} - \frac{3(\ve{p}\cdot \ve{r})\ve{r}}{r^5}}
+\end{align}
+と導くことができる。
+
+後の双極子双極子相互作用を計算するため、双極子がもつエネルギーを計算する。
+一様電場の中に双極子が存在し、電場となす角が$\theta$であるとする。
+$\theta=\frac{\pi}{2}$が初期状態としてエネルギーがゼロであるとき、回転した際のエネルギーは
+双極子$\ve{p}=q\ve{d}$を用いて($\ve{d}$は$-q$から$q$へ向かうベクトル)、
+\begin{align}
+U
+&= -\sbra{\frac{|\ve{d}|}{2}\cos \theta q|\ve{E}| + \frac{-|\ve{d}|}{2}\cos \theta (-q)|\ve{E}|
+    }\\
+&= -|\ve{d}|q|\ve{E}|\cos \theta \\
+&= -\ve{p} \cdot \ve{E}
+\end{align}
+となる。
+
+したがって、双極子双極子相互作用$U_{\rm dd}$は、$\ve{p}_i$に$\ve{p}_j$が作る電場$\ve{E}_j$が作用すると考えると以下のように書ける。
+\begin{align}
+U_{\rm dd} &= -\ve{p}_i \cdot \ve{E}_j \\
+&= \frac{1}{4\pi \varepsilon_0}\ve{p}_i \cdot 
+\sbra{\frac{\ve{p}_j}{r^3} - \frac{3(\ve{p}_j\cdot \ve{r})\ve{r}}{r^5}} \\
+&= \frac{1}{4\pi \varepsilon_0} 
+\sbra{\frac{\ve{p}_i \cdot \ve{p}_j}{r^3} - \frac{3(\ve{p}_i \cdot \ve{r})(\ve{p}_j\cdot \ve{r})}{r^5}} \\
+&= \frac{1}{4\pi \varepsilon_0}
+p_i^{s}T_{ij}^{st}p_j^t
+\end{align}
+最終行は$s,t$については縮約をとるが、$i,j$は粒子番号で縮約をとらない(とる場合は$i \lt j$のペアに対して計算する)。
+ここで、$T^{st}_{ij}$はdipole-dipole coupling tensorであり、
+\begin{align}
+T^{st}_{ij} = \frac{\delta_{st}}{r_{ij}^3} - \frac{3r^{s}_{ij}r^{t}_{ij}}{r^5_{ij}}
+\end{align}
+である。
+
+<p>
+<a href="index.html">戻る</a>
+
+</body>
+</html>
