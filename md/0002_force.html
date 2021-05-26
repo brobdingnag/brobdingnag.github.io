@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Force calculation</title>
+        <meta charset="utf-8">
+        <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
+        </script>
+        <script type="text/x-mathjax-config"> <!--Math Jaxの設定-->
+          MathJax.Hub.Config({
+            "HTML-CSS": {
+                availableFonts: [],
+                preferredFont: null,
+                webFont: "TeX",
+                mtextFontInherit: true}
+          });
+          MathJax.Hub.Config({
+            TeX: {
+                equationNumbers: { autoNumber: "AMS" },
+                Macros: {
+                    ve: ['{\\boldsymbol{#1}}',1],
+                    rmd: '{\\,\\mathrm d}',
+                    dif:    ['{\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}}',2],
+                    Dif:    ['{\\frac{\\mathrm{D} #1}{\\mathrm{D} #2}}',2],
+                    ddif:   ['{\\frac{\\mathrm{d}^2#1}{\\mathrm{d} #2^2}}',2],
+                    pdif:   ['{\\frac{\\partial #1}{\\partial #2}}',2],
+                    pddif:  ['{\\frac{\\partial^2 #1}{\\partial #2^2}}',2],
+                    mbra: ['{\\left( #1 \\right)}',1],
+                    sbra: ['{\\left[ #1 \\right]}',1],
+                }
+            },
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            },
+            "HTML-CSS": { matchFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+          });
+        </script>
+    </head>
+<body>
+
+\begin{align}
+u_{ij}^{\rm LJ}= 4\varepsilon
+\sbra{
+    \mbra{
+\frac{\sigma}{r_{ij}}
+        }^{12}
+-\mbra{\frac{\sigma}{r_{ij}}
+        }^6
+}
+\end{align}
+
+\begin{align}
+U = \sum_{i=2} \sum_{j \lt i} u_{ij}^{\rm LJ}
+\end{align}
+
+<p>
+\begin{align}
+\ve{F}_i = -\pdif{U}{\ve{r}_i}
+\end{align}
+
+
+以下の議論では縮約に注意する。
+\begin{align}
+\pdif{}{\ve{r}_i} \frac{1}{r_{ij}^{12}}
+\rightarrow
+\pdif{}{r_i^k} \frac{1}{r_{ij}^{12}}
+&=\pdif{}{r_i^k} r_{ij}^{-12} \\
+&=-12 r_{ij}^{-13}
+\pdif{r_{ij}}{r_i^k}
+\end{align}
+\begin{align}
+\pdif{r_{ij}}{r_i^k}
+&=
+\pdif{(r_{ij}^mr_{ij}^m)^{1/2}}{r_i^k} \\
+&=
+\frac{1}{2}(r_{ij}^lr_{ij}^l)^{-1/2}
+2r_{ij}^m
+\pdif{
+    r_{ij}^m
+}{r_i^k} \\
+&=
+\frac{r_{ij}^m}{r_{ij}}
+\pdif{}{r_i^k}(r_i^m - r_j^m) \\
+&=
+\frac{r_{ij}^m}{r_{ij}}\delta_{km} \\
+&=
+\frac{r_{ij}^k}{r_{ij}} \\
+\end{align}
+
+\begin{align}
+\pdif{}{\ve{r}_i} \frac{1}{r_{ij}^{12}}
+=-\frac{12}{r_{ij}^{13}}
+\frac{\ve{r}_i}{r_{ij}}
+\end{align}
+
+力の計算のチェックでは、解析微分と4点数値微分を比較してみるとよい。
+
+\begin{align}
+\dif{f}{x}
+\simeq \frac{
+    8(f(x+\Delta x) - f(x-\delta x))
+    -(f(x+2\Delta x) - f(x-2\Delta x))
+    }{12\Delta x}
+\end{align}
+
+<p>
+<a href="md.html">戻る</a>
+
+</body>
+</html>
